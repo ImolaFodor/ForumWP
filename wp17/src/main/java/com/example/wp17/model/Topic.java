@@ -8,14 +8,14 @@ import java.util.List;
  * Created by Imola on 6/2/2017.
  */
 public class Topic implements Serializable {
-    private String subForum; //kom pripada
+    private int subForum; //kom pripada
     private String name; //jedinstven u okviru podforuma
     //private Blob icon;
     private List<String> rules= new ArrayList<String>();
-    private enum Coffee {
-        TEXT,
-        IMAGE,
-        LINK
+    private enum User {
+        REGULAR,
+        MODERATOR,
+        ADMINISTRATOR
     }
     private String author;
     private String date;
@@ -23,11 +23,25 @@ public class Topic implements Serializable {
     private int likesNo;
     private int dislikesNo;
 
-    public String getSubForum() {
+    public Topic(int subForum, String name, List<String> rules, String author, String date, List<String> comments, int likesNo, int dislikesNo) {
+        this.subForum = subForum;
+        this.name = name;
+        this.rules = rules;
+        this.author = author;
+        this.date = date;
+        this.comments = comments;
+        this.likesNo = likesNo;
+        this.dislikesNo = dislikesNo;
+    }
+
+    public Topic() {
+    }
+
+    public int getSubForum() {
         return subForum;
     }
 
-    public void setSubForum(String subForum) {
+    public void setSubForum(int subForum) {
         this.subForum = subForum;
     }
 
