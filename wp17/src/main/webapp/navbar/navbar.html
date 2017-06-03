@@ -1,0 +1,19 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <ul class="nav navbar-nav">
+            <li><a ui-sref="home">Home</a></li>
+            <li><a ng-show="$root.user" ui-sref="process({type:'my'})">Start Process</a></li>
+            <li><a ng-show="$root.user" ui-sref="process({type:'instances'})">Process Instances</a></li>
+            <li><a ng-show="$root.user" ui-sref="task({type:'my'})">My Tasks</a></li>
+            <li><a ng-show="$root.user" ui-sref="task({type:'involved'})">Involved In Tasks</a></li>
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-show="$root.user===undefined"><a ui-sref="login">Login</a></li>
+            <li ng-hide="$root.user===undefined"><a ng-click="logout()">Logout</a></li>
+        </ul>
+
+    </div>
+</nav>
