@@ -5,10 +5,7 @@ import com.example.wp17.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -23,8 +20,8 @@ public class TopicController {
     TopicService topicService;
 
     @RequestMapping(
-            method = RequestMethod.GET)
-    public ResponseEntity getTopics(@RequestBody int id) {
+            method = RequestMethod.GET,value = "/{id}")
+    public ResponseEntity getTopics(@PathVariable("id") int id) {
         System.out.println(topicService.readTopics(id));
         ArrayList<Topic> topics= topicService.readTopics(id);
         return new ResponseEntity(topics, HttpStatus.OK);

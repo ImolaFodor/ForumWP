@@ -17,11 +17,22 @@
         .module('bpm_app')
         .controller('TopicController', TopicController);
 
-    TopicController.$inject = ['$scope', '$state', 'AuthService', '$rootScope'];
+    TopicController.$inject = ['$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService'];
 
-    function TopicController($scope, $state, AuthService, $rootScope) {
+    function TopicController($scope, $state, AuthService, $rootScope, $stateParams, TopicService) {
 
-
+        TopicService.getTopics($stateParams.id,
+            function(response){
+                /*if(!response.data.success){
+                 $state.go('home');
+                 }else{*/
+                console.log(response.data);
+                $scope.topics=response.data;
+                //}
+            }/*,
+             function(response){
+             $state.go('home');
+             }*/);
 
 
     }

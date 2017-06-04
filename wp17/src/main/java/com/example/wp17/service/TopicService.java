@@ -33,13 +33,14 @@ public class TopicService {
     public ArrayList<Topic> readTopics(int id){
 
         ArrayList<Topic> allTopics = null;
-        ArrayList<Topic> topics = null;
+        ArrayList<Topic> topics = new ArrayList<Topic>();
         try {
             FileInputStream fileIn = new FileInputStream("topics.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             allTopics = (ArrayList<Topic>) in.readObject();
-
+            System.out.println(allTopics + "id: "+id);
             for(Topic topic : allTopics){
+                System.out.println(topic);
                 if(topic.getSubForum()==id){
                     topics.add(topic);
                 }

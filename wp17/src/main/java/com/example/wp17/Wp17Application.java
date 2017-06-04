@@ -40,17 +40,17 @@ public class Wp17Application {
 				System.out.println("SFS FROM FILE");
 				System.out.println(subForums);*/
 
-				System.out.println("READING TOPICS FILE");
+				/*System.out.println("READING TOPICS FILE");
 				ArrayList<Topic> topics = topicService.readTopics(1);
 				Topic t = new Topic();
-				t.setName("IMOLA RET");
+				t.setName("IMOLA topic");
 				t.setSubForum(1);
 				topics.add(t);
 				//System.out.println(subForums);
 				topicService.writeTopics(topics);
 				topics = topicService.readTopics(1);
 				//System.out.println("SFS FROM FILE");
-				System.out.println(topics);
+				System.out.println(topics);*/
 
 			}
 		};
