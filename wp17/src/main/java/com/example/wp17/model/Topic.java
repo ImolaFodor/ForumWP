@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Imola on 6/2/2017.
  */
 public class Topic implements Serializable {
-    private int subForum; //kom pripada
+    private String subForum; //kom pripada
     private String name; //jedinstven u okviru podforuma
     //private Blob icon;
     private List<String> rules= new ArrayList<String>();
@@ -19,11 +19,12 @@ public class Topic implements Serializable {
     }
     private String author;
     private String date;
+    private String content;
     private List<String> comments= new ArrayList<String>();
     private int likesNo;
     private int dislikesNo;
 
-    public Topic(int subForum, String name, List<String> rules, String author, String date, List<String> comments, int likesNo, int dislikesNo) {
+    public Topic(String subForum, String name, List<String> rules, String author, String date, List<String> comments, int likesNo, int dislikesNo) {
         this.subForum = subForum;
         this.name = name;
         this.rules = rules;
@@ -37,11 +38,11 @@ public class Topic implements Serializable {
     public Topic() {
     }
 
-    public int getSubForum() {
+    public String getSubForum() {
         return subForum;
     }
 
-    public void setSubForum(int subForum) {
+    public void setSubForum(String subForum) {
         this.subForum = subForum;
     }
 
@@ -75,6 +76,14 @@ public class Topic implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public List<String> getComments() {

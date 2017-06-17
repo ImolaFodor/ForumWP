@@ -28,14 +28,14 @@ public class SubForumController {
             method = RequestMethod.POST)
     public ResponseEntity<SubForum> createItem(@RequestBody SubForum subforum) {
         subForumService.addSubForum(subforum);
-        System.out.println(subForumService.readSubForums());
+        //System.out.println(subForumService.readSubForums());
         return new ResponseEntity<>(subforum, HttpStatus.OK);
     }
 
     @RequestMapping(
             method = RequestMethod.GET)
     public ResponseEntity getSubForums() {
-        System.out.println(subForumService.readSubForums());
+        //System.out.println(subForumService.readSubForums());
         ArrayList<SubForum> subforums= subForumService.readSubForums();
         return new ResponseEntity(subforums, HttpStatus.OK);
     }

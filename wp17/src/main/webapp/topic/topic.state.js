@@ -19,11 +19,25 @@
 
         $stateProvider
             .state('topic', {
-                    url: '/topic/{id}',
+                    url: '/topic/{name}',
                     views: {
                         'content@': {
                             templateUrl: 'topic/topics.html',
                             controller: 'TopicController'
+                        },
+                        'navbar':{
+                            templateUrl: 'navbar/navbar.html',
+                            controller: 'NavbarController'
+                        }
+                    }
+                }
+            )
+            .state('topicdetail', {
+                    url: '/topicdetail/{name}',
+                    views: {
+                        'content@': {
+                            templateUrl: 'topic/topicdetail.html',
+                            controller: 'TopicDetailController'
                         },
                         'navbar':{
                             templateUrl: 'navbar/navbar.html',

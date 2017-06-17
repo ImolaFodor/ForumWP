@@ -32,7 +32,6 @@ public class Wp17Application {
 				ArrayList<SubForum> subForums = subForumService.readSubForums();
 				SubForum sf = new SubForum();
 				sf.setName("IMOLA RET");
-				sf.setId(1);
 				subForums.add(sf);
 				System.out.println(subForums);
 				subForumService.writeSubForums(subForums);
@@ -41,17 +40,19 @@ public class Wp17Application {
 				System.out.println(subForums);*/
 
 				/*System.out.println("READING TOPICS FILE");
-				ArrayList<Topic> topics = topicService.readTopics(1);
+				ArrayList<Topic> topics = topicService.readTopics("IMOLA RET");
 				Topic t = new Topic();
 				t.setName("IMOLA topic");
-				t.setSubForum(1);
+				t.setContent("Imola [ˈiːmola] (Emilian: Iommla, Romagnol: Jômla/Jemula) is a town and comune in the Metropolitan City of Bologna, located on the river Santerno, in the Emilia-Romagna region of northern Italy. The town is traditionally considered the western entrance to the historical region Romagna.\n" +
+						"\n" +
+						"The city is most noted as the home of the Autodromo Enzo e Dino Ferrari which formerly hosted the Formula One San Marino Grand Prix (the race was named after the nearby independent republic of San Marino, as Monza already hosted the Italian Grand Prix), and the deaths of Formula One drivers Ayrton Senna (Brazilian) and Roland Ratzenberger (Austrian) at the circuit during the 1994 San Marino Grand Prix. The death of Senna (three-times world champion) was an event that shocked the sporting world and changed Formula One safety standards for good.");
+				t.setSubForum("IMOLA RET");
 				topics.add(t);
 				//System.out.println(subForums);
 				topicService.writeTopics(topics);
-				topics = topicService.readTopics(1);
+				topics = topicService.readTopics("IMOLA RET");
 				//System.out.println("SFS FROM FILE");
 				System.out.println(topics);*/
-
 			}
 		};
 	}

@@ -17,10 +17,20 @@
     function TopicService($http){
 
         return{
-            getTopics: function(id, onSuccess, onError){
+            getTopics: function(name, onSuccess, onError){
                 var req = {
                     method: 'GET',
-                    url: '/api/topic/'+id,
+                    url: '/api/topic/'+name,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
+            getTopic: function(name, onSuccess, onError){
+                var req = {
+                    method: 'GET',
+                    url: '/api/topic/topicdetail/'+name,
                     headers: {
                         'Content-Type': 'application/json',
                     }

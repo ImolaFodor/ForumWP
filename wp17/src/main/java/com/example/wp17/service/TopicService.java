@@ -30,18 +30,19 @@ public class TopicService {
 
 
 
-    public ArrayList<Topic> readTopics(int id){
-
+    public ArrayList<Topic> readTopics(String name){
+        System.out.println("usao u servis topica");
         ArrayList<Topic> allTopics = null;
         ArrayList<Topic> topics = new ArrayList<Topic>();
         try {
             FileInputStream fileIn = new FileInputStream("topics.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             allTopics = (ArrayList<Topic>) in.readObject();
-            System.out.println(allTopics + "id: "+id);
+            //System.out.println(allTopics + "name of the subforum: "+name);
             for(Topic topic : allTopics){
-                System.out.println(topic);
-                if(topic.getSubForum()==id){
+                System.out.println(topic.getSubForum()+name);
+                if(topic.getSubForum().equals(name)){
+                    System.out.println("nasao sa istim imenom");
                     topics.add(topic);
                 }
             }
@@ -51,6 +52,31 @@ public class TopicService {
         }catch(Exception i) {
             i.printStackTrace();
             return new ArrayList<Topic>();
+        }
+    }
+
+    public Topic readTopic(String name){
+
+        ArrayList<Topic> allTopics = null;
+        ArrayList<Topic> topics = new ArrayList<Topic>();
+        Topic topic= new Topic();
+        try {
+            FileInputStream fileIn = new FileInputStream("topics.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            allTopics = (ArrayList<Topic>) in.readObject();
+            //System.out.println(allTopics + "name: "+name);
+            for(Topic t : allTopics){
+                //System.out.println(t.getName());
+                if(t.getName().equals(name)){
+                    topic=t;
+                }
+            }
+            in.close();
+            fileIn.close();
+            return topic;
+        }catch(Exception i) {
+            i.printStackTrace();
+            return new Topic();
         }
     }
 

@@ -21,7 +21,7 @@
 
     function TopicController($scope, $state, AuthService, $rootScope, $stateParams, TopicService) {
 
-        TopicService.getTopics($stateParams.id,
+        TopicService.getTopics($stateParams.name,
             function(response){
                 /*if(!response.data.success){
                  $state.go('home');
@@ -33,6 +33,8 @@
              function(response){
              $state.go('home');
              }*/);
+
+
 
 
     }

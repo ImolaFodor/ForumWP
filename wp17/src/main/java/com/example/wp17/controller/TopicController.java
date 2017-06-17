@@ -20,10 +20,22 @@ public class TopicController {
     TopicService topicService;
 
     @RequestMapping(
-            method = RequestMethod.GET,value = "/{id}")
-    public ResponseEntity getTopics(@PathVariable("id") int id) {
-        System.out.println(topicService.readTopics(id));
-        ArrayList<Topic> topics= topicService.readTopics(id);
+            method = RequestMethod.GET,value = "/{name}")
+    public ResponseEntity getTopics(@PathVariable("name") String name) {
+        System.out.println("usao u getTopics na BE");
+        ArrayList<Topic> topics= topicService.readTopics(name);
+        for(Topic t: topics){
+            System.out.println("ime teme iz liste tema "+t.getName());
+        }
+
         return new ResponseEntity(topics, HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,value = "/topicdetail/{name}")
+    public ResponseEntity getTopic(@PathVariable("name") String name) {
+       //System.out.println("Iz kontrolera: "+ topicService.readTopic(name));
+        Topic topic= topicService.readTopic(name);
+        return new ResponseEntity(topic, HttpStatus.OK);
     }
 }
