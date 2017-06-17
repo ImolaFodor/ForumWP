@@ -21,7 +21,7 @@
             AuthService.login(
                 $scope.user,
                 function(res){
-                    AuthService.saveToStorage("token", res.data.token);
+                    /*AuthService.saveToStorage("token", res.data.token);
                     AuthService.setHeader();
                     AuthService.me(
                         function(res){
@@ -29,11 +29,12 @@
                         },
                         function(res){
 
-                        });
-
+                        });*/
+                    alert("Registrovan korisnik!");
                     $state.go("home");
                 },
                 function(res){
+                    alert("Neregistrovan korisnik!");
                     console.log(res);
                 });
         }

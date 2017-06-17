@@ -35,4 +35,17 @@ public class UserController {
         }
 
     }
+
+    @RequestMapping(
+            method = RequestMethod.POST,value = "/login")
+    public ResponseEntity<Boolean> loginCheck(@RequestBody User user) {
+        Boolean isFound= userService.checkUser(user);
+        //System.out.println(userService.readUsers());
+        if(isFound){
+            return new ResponseEntity<>(isFound, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(isFound, HttpStatus.BAD_REQUEST);
+        }
+
+    }
 }

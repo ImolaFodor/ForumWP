@@ -12,7 +12,7 @@
             login: function(obj, onSuccess, onError){
                 var req = {
                     method: 'POST',
-                    url: '/api/user/login',
+                    url: '/api/users/login',
                     data: obj,
                     headers: {
                         'Content-Type': 'application/json',

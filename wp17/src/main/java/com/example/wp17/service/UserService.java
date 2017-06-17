@@ -46,23 +46,35 @@ public class UserService {
     }
 
     public Boolean addUser(User user){
-        Boolean nasao=false;
+        Boolean isFound=false;
         ArrayList<User> users = readUsers();
-        System.out.println("korisnici bez dodatog:"+users+"novi korisnik"+user);
+        System.out.println("korisnici bez dodatog:"+users+"hoce korisnik"+user);
         for(User u : users){
             if(u.getUsername().equals(user.getUsername())){
-               nasao=true;
+               isFound=true;
             }
         }
 
-        if(!nasao){
+        if(!isFound){
             users.add(user);
         }
 
         writeUsers(users);
         System.out.println("korisnici sa dodatim:"+users);
 
-        return nasao;
+        return isFound;
+    }
+
+    public Boolean checkUser(User user){
+        Boolean isFound=false;
+        ArrayList<User> users = readUsers();
+        System.out.println("korisnici bez dodatog:"+users+"novi korisnik"+user);
+        for(User u : users){
+            if(u.getUsername().equals(user.getUsername())){
+                isFound=true;
+            }
+        }
+        return isFound;
     }
 
 
