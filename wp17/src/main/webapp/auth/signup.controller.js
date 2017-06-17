@@ -18,7 +18,7 @@
         $scope.user.role="";
 
         $scope.signup = function(){
-            alert("usao");
+
             AuthService.signup(
                 $scope.user,
                 function(res){
@@ -31,10 +31,13 @@
                     //     function(res){
                     //
                     //     });
-
+                    alert("Korisnik je dodat!");
                     $state.go("home");
                 },
                 function(res){
+                    if(res.data){
+                        alert("Postoji korisnik sa unetim korisnickim imenom!");
+                    }
                     console.log(res);
                 });
         }

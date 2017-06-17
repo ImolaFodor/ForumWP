@@ -23,7 +23,7 @@ public class Wp17Application {
 	}
 
 	@Bean
-	CommandLineRunner init(final TopicService topicService) {
+	CommandLineRunner init(final UserService userService) {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... strings) throws Exception {
@@ -38,6 +38,17 @@ public class Wp17Application {
 				subForums = subForumService.readSubForums();
 				System.out.println("SFS FROM FILE");
 				System.out.println(subForums);*/
+
+				/*System.out.println("READING USERS FILE");
+				ArrayList<User> users = userService.readUsers();
+				User u = new User();
+				u.setUsername("IMOLA");
+				users.add(u);
+				System.out.println(users);
+				userService.writeUsers(users);
+				users = userService.readUsers();
+				System.out.println("SFS FROM FILE");
+				System.out.println(users);*/
 
 				/*System.out.println("READING TOPICS FILE");
 				ArrayList<Topic> topics = topicService.readTopics("IMOLA RET");

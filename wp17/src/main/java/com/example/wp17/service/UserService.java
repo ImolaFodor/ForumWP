@@ -45,10 +45,24 @@ public class UserService {
         }
     }
 
-    public void addUser(User user){
+    public Boolean addUser(User user){
+        Boolean nasao=false;
         ArrayList<User> users = readUsers();
-        users.add(user);
+        System.out.println("korisnici bez dodatog:"+users+"novi korisnik"+user);
+        for(User u : users){
+            if(u.getUsername().equals(user.getUsername())){
+               nasao=true;
+            }
+        }
+
+        if(!nasao){
+            users.add(user);
+        }
+
         writeUsers(users);
+        System.out.println("korisnici sa dodatim:"+users);
+
+        return nasao;
     }
 
 

@@ -25,9 +25,14 @@ public class UserController {
 
     @RequestMapping(
             method = RequestMethod.POST)
-    public ResponseEntity<User> createItem(@RequestBody User user) {
-        userService.addUser(user);
-        System.out.println(userService.readUsers());
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    public ResponseEntity<Boolean> createUser(@RequestBody User user) {
+        Boolean isFound= userService.addUser(user);
+        //System.out.println(userService.readUsers());
+        if(!isFound){
+            return new ResponseEntity<>(isFound, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(isFound, HttpStatus.BAD_REQUEST);
+        }
+
     }
 }
