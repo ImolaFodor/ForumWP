@@ -1,18 +1,23 @@
 package com.example.wp17;
 
+import com.example.wp17.model.Comment;
 import com.example.wp17.model.SubForum;
 import com.example.wp17.model.Topic;
 import com.example.wp17.model.User;
 import com.example.wp17.service.SubForumService;
 import com.example.wp17.service.TopicService;
 import com.example.wp17.service.UserService;
+import com.example.wp17.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @SpringBootApplication
 public class Wp17Application {
@@ -23,7 +28,7 @@ public class Wp17Application {
 	}
 
 	@Bean
-	CommandLineRunner init(final UserService userService) {
+	CommandLineRunner init(final CommentService commentService) {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... strings) throws Exception {
@@ -49,6 +54,25 @@ public class Wp17Application {
 				users = userService.readUsers();
 				System.out.println("SFS FROM FILE");
 				System.out.println(users);*/
+
+				System.out.println("READING COMMENTS FILE");
+				ArrayList<Comment> comments = commentService.readComments("IMOLA topic");
+				Comment c = new Comment();
+				c.setTopic("IMOLA topic");
+				c.setContent("This is Imolas second comment");
+				Date date=new Date();
+				Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String s = formatter.format(date);
+				c.setDate(s);
+				User u= new User();
+				u.setUsername("Imike");
+				c.setAuthor(u);
+				comments.add(c);
+				System.out.println(comments);
+				commentService.writeComments(comments);
+				comments = commentService.readComments("IMOLA TOPIC");
+				System.out.println("SFS FROM FILE");
+				System.out.println(comments);
 
 				/*System.out.println("READING TOPICS FILE");
 				ArrayList<Topic> topics = topicService.readTopics("IMOLA RET");

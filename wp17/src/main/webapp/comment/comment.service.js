@@ -1,6 +1,3 @@
-/**
- * Created by Imola on 6/3/2017.
- */
 
 /**
  * Created by Imola on 6/3/2017.
@@ -10,33 +7,13 @@
 
     angular
         .module('bpm_app')
-        .factory('TopicService', TopicService);
+        .factory('CommentService', CommentService);
 
-    TopicService.$inject = ['$http'];
+    CommentService.$inject = ['$http'];
 
-    function TopicService($http){
+    function CommentService($http){
 
         return{
-            getTopics: function(name, onSuccess, onError){
-                var req = {
-                    method: 'GET',
-                    url: '/api/topic/'+name,
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                }
-                $http(req).then(onSuccess, onError);
-            },
-            getTopic: function(name, onSuccess, onError){
-                var req = {
-                    method: 'GET',
-                    url: '/api/topic/topicdetail/'+name,
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                }
-                $http(req).then(onSuccess, onError);
-            },
             getComments: function(name, onSuccess, onError){
                 var req = {
                     method: 'GET',

@@ -1,3 +1,75 @@
+<style>
+    @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
+
+    .detailBox {
+        width:320px;
+        border:1px solid #bbb;
+        margin:50px;
+    }
+    .titleBox {
+        background-color:#fdfdfd;
+        padding:10px;
+    }
+    .titleBox label{
+        color:#444;
+        margin:0;
+        display:inline-block;
+    }
+
+    .commentBox {
+        padding:10px;
+        border-top:1px dotted #bbb;
+    }
+    .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+        width:80%;
+    }
+    .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+        width:18%;
+    }
+    .actionBox .form-group * {
+        width:100%;
+    }
+    .taskDescription {
+        margin-top:10px;
+    }
+    .commentList {
+        padding:0;
+        list-style:none;
+        max-height:200px;
+        overflow:auto;
+    }
+    .commentList li {
+        margin:0;
+        margin-top:10px;
+    }
+    .commentList li > div {
+        display:table-cell;
+    }
+    .commenterImage {
+        width:30px;
+        margin-right:5px;
+        height:100%;
+        float:left;
+    }
+    .commenterImage img {
+        width:100%;
+        border-radius:50%;
+    }
+    .commentText p {
+        margin:0;
+    }
+    .sub-text {
+        color:#aaa;
+        font-family:verdana;
+        font-size:11px;
+    }
+    .actionBox {
+        border-top:1px dotted #bbb;
+        padding:10px;
+    }
+
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,5 +80,40 @@
 <div>{{topicdetail.name}}</div>
 <br>
 <div>{{topicdetail.content}}</div>
+
+<div class="container">
+<div class="detailBox">
+    <div class="titleBox">
+        <label>Comment Box</label>
+        <button type="button" class="close" aria-hidden="true">&times;</button>
+    </div>
+    <div class="commentBox">
+
+        <p class="taskDescription">Write a comment!</p>
+    </div>
+    <div class="actionBox">
+        <ul class="commentList">
+            <li ng-repeat="comment in comments">
+                <!--<div class="commentText">
+                    {{comment.author.username}}
+                </div>-->
+                <div class="commentText">
+                    <p class="">{{comment.content}}</p> <span class="date sub-text">{{comment.date}}</span> <span class="date sub-text">{{comment.author.username}}</span>
+
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Your comments" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
 </body>
 </html>
