@@ -71,14 +71,14 @@
     .social-like, .social-dislike {
          border: none;
          outline: none;
-         font-size: 12px;
+         font-size: 14px;
          /*width: 48%;*/
          background-color: #e6de7e;
          color: #fff;
      }
 
     .social-like {
-        border-top-left-radius: 10px;
+        border-top-left-radius: 12px;
         text-align: right;
     }
 
@@ -113,24 +113,24 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<div>{{topicdetail.name}}</div>
+<body >
+<div style="padding: 10px">{{topicdetail.name}}</div>
 <br>
-<div>{{topicdetail.content}}</div>
+<div style="padding: 10px">{{topicdetail.content}}</div>
 <br>
 <br>
-<button class="social-like" ng-click="likedTopic()">
+<button class="social-like" ng-click="likedTopic() " >
     <span class="like"><i class="glyphicon glyphicon-thumbs-up"></i></span>
     <span class="count" >{{topicdetail.likesNo}}</span>
 </button>
 &nbsp;
-<button class="social-dislike" ng-click="dislikedTopic()">
+<button class="social-dislike" ng-click="dislikedTopic()" >
     <span class="dislike" >{{topicdetail.dislikesNo}}</span>
     <span class="like"><i class="glyphicon glyphicon-thumbs-down"></i></span>
 </button>
 
 <div class="container">
-<div class="detailBox">
+<div class="detailBox"  style="width:500px">
     <div class="titleBox">
         <label>Comment Box</label>
         <button type="button" class="close" aria-hidden="true">&times;</button>
@@ -146,8 +146,8 @@
                     {{comment.author.username}}
                 </div>-->
                 <div class="commentText">
-                    <p class="">{{comment.content}}</p>
-                    <button class="social-like" ng-click="likedComment(comment.id)">
+                    <div><input class="form-control" style="width: 300px" type="text" ng-model="comment.content" ng-disabled="isDisabled"></input> <button class="social-like glyphicon glyphicon-ok" style="float: right" ng-click="confirmEditComment(comment.id,comment.content)" ng-show="showOkButton"> </button></div>
+                    <p style="padding-top: 5px"><button class="social-like" ng-click="likedComment(comment.id)">
                         <span class="like"><i class="glyphicon glyphicon-thumbs-up"></i></span>
                         <span class="count" >{{comment.likesNo}}</span>
                     </button>
@@ -156,8 +156,9 @@
                         <span class="dislike" >{{comment.dislikesNo}}</span>
                         <span class="like"><i class="glyphicon glyphicon-thumbs-down"></i></span>
                     </button>
-                    <span class="date sub-text">{{comment.date}}</span> <span class="date sub-text">{{comment.author.username}}</span>
-
+                        <span class="date sub-text">{{comment.date}}</span> <span class="date sub-text">{{comment.author.username}}</span>
+                        <button class="social-like glyphicon glyphicon-trash" style="float: right" ng-click="deleteComment(comment.id)"> </button><button class="social-like glyphicon glyphicon-pencil" style="float: right" ng-click="editComment(comment.id)"> </button>
+                    </p>
                 </div>
             </li>
         </ul>

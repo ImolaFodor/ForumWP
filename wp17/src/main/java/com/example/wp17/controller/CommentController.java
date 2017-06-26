@@ -34,8 +34,7 @@ public class CommentController {
     public ResponseEntity writeComment(@RequestBody Comment comment) {
         System.out.println("usao u writeComment na BE"+ comment.getContent());
         ArrayList<Comment> comments= commentService.readComments(comment.getTopic());
-        comments.add(comment);
-        commentService.writeComments(comments);
+        commentService.writeComment(comment);
 
         return new ResponseEntity(comment, HttpStatus.OK);
     }
@@ -44,13 +43,29 @@ public class CommentController {
             method = RequestMethod.POST,value = "/rating")
     public ResponseEntity giveRating(@RequestBody Comment rateInfo) {
         if(rateInfo.getRateType().equals("like")){
-            System.out.println("komentar na temu " + rateInfo.getTopic() + " je dobila like");
             commentService.giveRating(rateInfo);
         }else{
-            System.out.println("tema " + rateInfo.getTopic() + " je dobila dislike");
             commentService.giveRating(rateInfo);
         }
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.DELETE)
+    public ResponseEntity deleteComment(@RequestBody Comment comment) {
+        System.out.println("usao u deleteComment na BE"+ comment.getContent());
+        commentService.deleteComment(comment);
+
+        return new ResponseEntity(comment, HttpStatus.OK);
+    }
+
+    @RequestMapping(
+                method = RequestMethod.PUT)
+    public ResponseEntity editComment(@RequestBody Comment comment) {
+        System.out.println("usao u deleteComment na BE"+ comment.getContent());
+        commentService.editComment(comment);
+
+        return new ResponseEntity(comment, HttpStatus.OK);
     }
 
 }

@@ -38,7 +38,28 @@ public class CommentService {
         }
     }
 
+    public void writeComment(Comment c){
+        ArrayList<Comment> comments= readComments(c.getTopic());
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream("comments.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                long dateId= new Date().getTime();
+                c.setId(dateId);
+                Date date=new Date();
+                Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(date);
+                c.setDate(s);
 
+            comments.add(c);
+            out.writeObject(comments);
+            out.close();
+            fileOut.close();
+            System.out.printf("saved");
+        }catch(IOException i) {
+            i.printStackTrace();
+        }
+    }
 
     public ArrayList<Comment> readComments(String name){
         //System.out.println("usao u servis commentsa");
@@ -86,5 +107,32 @@ public class CommentService {
         comments.add(ratedComment);
         writeComments(comments);
 
+    }
+
+    public void deleteComment(Comment comment){
+        ArrayList<Comment> comments= readComments(comment.getTopic());
+        for(Comment c : comments){
+            if(c.getId()==comment.getId()) {
+                comments.remove(c);
+                break;
+            }
+        }
+        writeComments(comments);
+    }
+
+    public void editComment(Comment comment){
+        ArrayList<Comment> comments= readComments(comment.getTopic());
+        Comment editedComment= new Comment();
+
+        for(Comment c : comments){
+            if(c.getId()==comment.getId()) {
+                editedComment=c;
+                comments.remove(c);
+                editedComment.setContent(comment.getContent());
+                break;
+            }
+        }
+        writeComments(comments);
+        writeComment(editedComment);
     }
 }

@@ -12,6 +12,10 @@
     TopicDetailController.$inject = ['$window','$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService','CommentService'];
 
     function TopicDetailController($window, $scope, $state, AuthService, $rootScope, $stateParams, TopicService, CommentService) {
+
+        $scope.isDisabled=true;
+        $scope.showOkButton=false;
+
         TopicService.getTopic($stateParams.subforum, $stateParams.name,
             function(response){
                 /*if(!response.data.success){
@@ -32,6 +36,7 @@
                  }else{*/
                 console.log(response.data);
                 $scope.comments=response.data;
+
                 //}
             }/*,
              function(response){
@@ -116,9 +121,9 @@
              $window.location.reload();
         }
 
-        $scope.dislikedComment= function() {
+        $scope.dislikedComment= function(id) {
             var dislike= "dislike";
-            var obj={topic: $stateParams.name, rateType: dislike};
+            var obj={topic: $stateParams.name, rateType: dislike, id: id};
             CommentService.giveRating(obj,
                 function(response){
                     /*if(!response.data.success){
@@ -134,6 +139,68 @@
             $window.location.reload();
 
         }
+
+        $scope.deleteComment= function(id) {
+            var obj={topic: $stateParams.name,id: id};
+            CommentService.deleteComment(obj,
+                function(response){
+                    /*if(!response.data.success){
+                     $state.go('home');
+                     }else{*/
+                    //console.log(response.data);
+                    //}
+                }/*,
+                 function(response){
+                 $state.go('home');
+                 }*/);
+
+            $window.location.reload();
+
+        }
+
+        $scope.editComment= function() {
+            $scope.isDisabled=false;
+            $scope.showOkButton=true;
+            /*var obj={topic: $stateParams.name,id: id, content: newContent};
+            CommentService.editComment(obj,
+                function(response){
+                    /!*if(!response.data.success){
+                     $state.go('home');
+                     }else{*!/
+                    //console.log(response.data);
+                    //}
+                }/!*,
+                 function(response){
+                 $state.go('home');
+                 }*!/);
+
+            $window.location.reload();*/
+
+        }
+
+        $scope.confirmEditComment= function(id, newContent) {
+            var obj={topic: $stateParams.name,id: id, content: newContent};
+             CommentService.editComment(obj,
+             function(response){
+             /*if(!response.data.success){
+             $state.go('home');
+             }else{*/
+             //console.log(response.data);
+             //}
+             }/*,
+             function(response){
+             $state.go('home');
+             }*/);
+
+             $window.location.reload();
+
+        }
+
+
+
+
+
+
 
     }
 })();

@@ -46,6 +46,28 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            deleteComment: function(obj, onSuccess, onError){
+                var req = {
+                    method: 'DELETE',
+                    url: '/api/comments',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
+            editComment: function(obj, onSuccess, onError){
+                var req = {
+                    method: 'PUT',
+                    url: '/api/comments',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             me: function(onSuccess, onError){
                 var req = {
                     method: 'GET',
