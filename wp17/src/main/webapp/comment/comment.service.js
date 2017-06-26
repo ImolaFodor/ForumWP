@@ -24,6 +24,17 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            writeComment: function(obj, onSuccess, onError){
+                var req = {
+                    method: 'POST',
+                    url: '/api/comments',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             me: function(onSuccess, onError){
                 var req = {
                     method: 'GET',

@@ -40,9 +40,9 @@ public class TopicService {
             allTopics = (ArrayList<Topic>) in.readObject();
             //System.out.println(allTopics + "name of the subforum: "+name);
             for(Topic topic : allTopics){
-                System.out.println(topic.getSubForum()+name);
+                //System.out.println(topic.getSubForum()+name);
                 if(topic.getSubForum().equals(name)){
-                    System.out.println("nasao sa istim imenom");
+                    //System.out.println("nasao sa istim imenom");
                     topics.add(topic);
                 }
             }
@@ -85,6 +85,29 @@ public class TopicService {
         topics.add(topic);
         writeTopics(topics);
     }*/
+
+    public void giveRating(Topic rateInfo){
+            Topic topic= readTopic(rateInfo.getName());
+            if(rateInfo.getRateType().equals("like")){
+                int newLikeNo= topic.getLikesNo()+1;
+                System.out.println(topic.getLikesNo());
+                topic.setLikesNo(newLikeNo);
+            }else{
+                topic.setDislikesNo(topic.getDislikesNo()+1);
+                //System.out.println("tema " + rateInfo.getName() + " koja pripada forumu " + rateInfo.getSubForum() + " je dobila dislike i ima " + topic.getDislikesNo() + "dislike-ova");
+            }
+
+            ArrayList<Topic> topics= readTopics(rateInfo.getSubForum());
+
+            for(Topic t : topics){
+                if(t.getName().equals(rateInfo.getName())){
+                    topics.remove(t);
+                    break;
+                }
+            }
+            topics.add(topic);
+            writeTopics(topics);
+    }
 
 
 }

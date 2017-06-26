@@ -22,20 +22,33 @@ public class TopicController {
     @RequestMapping(
             method = RequestMethod.GET,value = "/{name}")
     public ResponseEntity getTopics(@PathVariable("name") String name) {
-        System.out.println("usao u getTopics na BE");
+        //System.out.println("usao u getTopics na BE");
         ArrayList<Topic> topics= topicService.readTopics(name);
-        for(Topic t: topics){
+        /*for(Topic t: topics){
             System.out.println("ime teme iz liste tema "+t.getName());
-        }
+        }*/
 
         return new ResponseEntity(topics, HttpStatus.OK);
     }
 
     @RequestMapping(
-            method = RequestMethod.GET,value = "/topicdetail/{name}")
-    public ResponseEntity getTopic(@PathVariable("name") String name) {
+            method = RequestMethod.GET,value = "/topicdetail/{subforum}/{name}")
+    public ResponseEntity getTopic(@PathVariable("name") String name, @PathVariable("subforum") String subForum) {
        //System.out.println("Iz kontrolera: "+ topicService.readTopic(name));
         Topic topic= topicService.readTopic(name);
         return new ResponseEntity(topic, HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.POST,value = "/rating")
+    public ResponseEntity giveRating(@RequestBody Topic rateInfo) {
+        if(rateInfo.getRateType().equals("like")){
+            System.out.println("tema " + rateInfo.getName() + " koja pripada forumu " + rateInfo.getSubForum() + " je dobila like");
+            topicService.giveRating(rateInfo);
+        }else{
+            System.out.println("tema " + rateInfo.getName() + " je dobila dislike");
+            topicService.giveRating(rateInfo);
+        }
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

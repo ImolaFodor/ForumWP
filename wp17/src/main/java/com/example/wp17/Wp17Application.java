@@ -55,7 +55,7 @@ public class Wp17Application {
 				System.out.println("SFS FROM FILE");
 				System.out.println(users);*/
 
-				System.out.println("READING COMMENTS FILE");
+				/*System.out.println("READING COMMENTS FILE");
 				ArrayList<Comment> comments = commentService.readComments("IMOLA topic");
 				Comment c = new Comment();
 				c.setTopic("IMOLA topic");
@@ -72,7 +72,7 @@ public class Wp17Application {
 				commentService.writeComments(comments);
 				comments = commentService.readComments("IMOLA TOPIC");
 				System.out.println("SFS FROM FILE");
-				System.out.println(comments);
+				System.out.println(comments);*/
 
 				/*System.out.println("READING TOPICS FILE");
 				ArrayList<Topic> topics = topicService.readTopics("IMOLA RET");

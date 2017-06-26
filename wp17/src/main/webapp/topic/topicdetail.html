@@ -45,11 +45,11 @@
     .commentList li > div {
         display:table-cell;
     }
-    .commenterImage {
+    .commentRating {
         width:30px;
         margin-right:5px;
         height:100%;
-        float:left;
+        float:right;
     }
     .commenterImage img {
         width:100%;
@@ -62,10 +62,47 @@
         color:#aaa;
         font-family:verdana;
         font-size:11px;
+        padding-top: 20px;
     }
     .actionBox {
         border-top:1px dotted #bbb;
         padding:10px;
+    }
+    .social-like, .social-dislike {
+         border: none;
+         outline: none;
+         font-size: 12px;
+         /*width: 48%;*/
+         background-color: #e6de7e;
+         color: #fff;
+     }
+
+    .social-like {
+        border-top-left-radius: 10px;
+        text-align: right;
+    }
+
+    .social-dislike {
+        border-top-right-radius: 10px;
+        text-align: left;
+    }
+
+    .count, .like, .dislike {
+        padding:7px;
+    }
+
+    .count, .dislike {
+        background-color: #e1d11a;
+        border-radius: 50%;
+        font-size:10px;
+    }
+
+    .dislike {
+        margin-left: -13px;
+    }
+
+    .count {
+        margin-right: -10px;
     }
 
 </style>
@@ -80,6 +117,17 @@
 <div>{{topicdetail.name}}</div>
 <br>
 <div>{{topicdetail.content}}</div>
+<br>
+<br>
+<button class="social-like" ng-click="likedTopic()">
+    <span class="like"><i class="glyphicon glyphicon-thumbs-up"></i></span>
+    <span class="count" >{{topicdetail.likesNo}}</span>
+</button>
+&nbsp;
+<button class="social-dislike" ng-click="dislikedTopic()">
+    <span class="dislike" >{{topicdetail.dislikesNo}}</span>
+    <span class="like"><i class="glyphicon glyphicon-thumbs-down"></i></span>
+</button>
 
 <div class="container">
 <div class="detailBox">
@@ -98,17 +146,27 @@
                     {{comment.author.username}}
                 </div>-->
                 <div class="commentText">
-                    <p class="">{{comment.content}}</p> <span class="date sub-text">{{comment.date}}</span> <span class="date sub-text">{{comment.author.username}}</span>
+                    <p class="">{{comment.content}}</p>
+                    <button class="social-like" ng-click="likedComment()">
+                        <span class="like"><i class="glyphicon glyphicon-thumbs-up"></i></span>
+                        <span class="count" >0</span>
+                    </button>
+                    &nbsp;
+                    <button class="social-dislike" ng-click="dislikedComment()">
+                        <span class="dislike" >0</span>
+                        <span class="like"><i class="glyphicon glyphicon-thumbs-down"></i></span>
+                    </button>
+                    <span class="date sub-text">{{comment.date}}</span> <span class="date sub-text">{{comment.author.username}}</span>
 
                 </div>
             </li>
         </ul>
         <form class="form-inline" role="form">
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="Your comments" />
+            <div class="form-group" >
+                <input class="form-control" type="text" ng-model="commentcontent" placeholder="Your comments" />
             </div>
             <div class="form-group">
-                <button class="btn btn-default">Add</button>
+                <button class="btn btn-default" ng-click="add()">Add</button>
             </div>
         </form>
     </div>

@@ -27,20 +27,21 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
-            getTopic: function(name, onSuccess, onError){
+            getTopic: function(subforum,name, onSuccess, onError){
                 var req = {
                     method: 'GET',
-                    url: '/api/topic/topicdetail/'+name,
+                    url: '/api/topic/topicdetail/'+subforum+'/'+name,
                     headers: {
                         'Content-Type': 'application/json',
                     }
                 }
                 $http(req).then(onSuccess, onError);
             },
-            getComments: function(name, onSuccess, onError){
+            giveRating: function(obj, onSuccess, onError){
                 var req = {
-                    method: 'GET',
-                    url: '/api/comments/'+name,
+                    method: 'POST',
+                    url: '/api/topic/rating',
+                    data: obj,
                     headers: {
                         'Content-Type': 'application/json',
                     }

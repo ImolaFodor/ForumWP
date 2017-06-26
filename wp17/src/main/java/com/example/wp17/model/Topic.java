@@ -23,6 +23,7 @@ public class Topic implements Serializable {
     private List<String> comments= new ArrayList<String>();
     private int likesNo;
     private int dislikesNo;
+    private String rateType;
 
     public Topic(String subForum, String name, List<String> rules, String author, String date, List<String> comments, int likesNo, int dislikesNo) {
         this.subForum = subForum;
@@ -108,6 +109,14 @@ public class Topic implements Serializable {
 
     public void setDislikesNo(int dislikesNo) {
         this.dislikesNo = dislikesNo;
+    }
+
+    public String getRateType() {
+        return rateType;
+    }
+
+    public void setRateType(String rateType) {
+        this.rateType = rateType;
     }
 
     @Override

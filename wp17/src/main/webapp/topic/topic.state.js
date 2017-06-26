@@ -33,7 +33,7 @@
                 }
             )
             .state('topicdetail', {
-                    url: '/topicdetail/{name}',
+                    url: '/topicdetail/{subforum}/{name}',
                     views: {
                         'content@': {
                             templateUrl: 'topic/topicdetail.html',

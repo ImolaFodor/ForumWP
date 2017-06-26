@@ -48,7 +48,7 @@ public class UserService {
     public Boolean addUser(User user){
         Boolean isFound=false;
         ArrayList<User> users = readUsers();
-        System.out.println("korisnici bez dodatog:"+users+"hoce korisnik"+user);
+        //System.out.println("korisnici bez dodatog:"+users+"hoce korisnik"+user);
         for(User u : users){
             if(u.getUsername().equals(user.getUsername())){
                isFound=true;
@@ -60,7 +60,7 @@ public class UserService {
         }
 
         writeUsers(users);
-        System.out.println("korisnici sa dodatim:"+users);
+        //System.out.println("korisnici sa dodatim:"+users);
 
         return isFound;
     }
@@ -68,7 +68,7 @@ public class UserService {
     public Boolean checkUser(User user){
         Boolean isFound=false;
         ArrayList<User> users = readUsers();
-        System.out.println("korisnici bez dodatog:"+users+"novi korisnik"+user);
+        //System.out.println("korisnici bez dodatog:"+users+"novi korisnik"+user);
         for(User u : users){
             if(u.getUsername().equals(user.getUsername())){
                 isFound=true;

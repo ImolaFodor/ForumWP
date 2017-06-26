@@ -4,7 +4,10 @@ import com.example.wp17.model.Comment;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Imola on 6/19/2017.
@@ -18,6 +21,12 @@ public class CommentService {
             FileOutputStream fileOut =
                     new FileOutputStream("comments.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            for(Comment c : comments){
+                Date date=new Date();
+                Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String s = formatter.format(date);
+                c.setDate(s);
+            }
             out.writeObject(comments);
             out.close();
             fileOut.close();
@@ -30,7 +39,7 @@ public class CommentService {
 
 
     public ArrayList<Comment> readComments(String name){
-        System.out.println("usao u servis commentsa");
+        //System.out.println("usao u servis commentsa");
         ArrayList<Comment> allComments = null;
         ArrayList<Comment> comments = new ArrayList<Comment>();
         try {
@@ -39,9 +48,9 @@ public class CommentService {
             allComments = (ArrayList<Comment>) in.readObject();
             //System.out.println(allTopics + "name of the subforum: "+name);
             for(Comment comment : allComments){
-                System.out.println(comment.getTopic()+name);
+                //System.out.println(comment.getTopic()+name);
                 if(comment.getTopic().equals(name)){
-                    System.out.println("nasao sa istim imenom");
+                    //System.out.println("nasao sa istim imenom");
                     comments.add(comment);
                 }
             }
