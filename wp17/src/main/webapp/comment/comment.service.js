@@ -35,6 +35,17 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            giveRating: function(obj, onSuccess, onError){
+                var req = {
+                    method: 'POST',
+                    url: '/api/comments/rating',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             me: function(onSuccess, onError){
                 var req = {
                     method: 'GET',

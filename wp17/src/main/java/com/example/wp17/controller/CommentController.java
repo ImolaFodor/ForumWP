@@ -40,4 +40,17 @@ public class CommentController {
         return new ResponseEntity(comment, HttpStatus.OK);
     }
 
+    @RequestMapping(
+            method = RequestMethod.POST,value = "/rating")
+    public ResponseEntity giveRating(@RequestBody Comment rateInfo) {
+        if(rateInfo.getRateType().equals("like")){
+            System.out.println("komentar na temu " + rateInfo.getTopic() + " je dobila like");
+            commentService.giveRating(rateInfo);
+        }else{
+            System.out.println("tema " + rateInfo.getTopic() + " je dobila dislike");
+            commentService.giveRating(rateInfo);
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 }

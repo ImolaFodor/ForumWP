@@ -98,12 +98,40 @@
 
         }
 
-        $scope.likedComment= function(){
-            alert("like!");
+        $scope.likedComment= function(id){
+            var like= "like";
+            var obj={subForum: $stateParams.subforum, topic: $stateParams.name, rateType: like, id: id};
+             CommentService.giveRating(obj,
+             function(response){
+             /*if(!response.data.success){
+             $state.go('home');
+             }else{*/
+             //console.log(response.data);
+             //}
+             }/*,
+             function(response){
+             $state.go('home');
+             }*/);
+
+             $window.location.reload();
         }
 
         $scope.dislikedComment= function() {
-            alert("dislike!");
+            var dislike= "dislike";
+            var obj={topic: $stateParams.name, rateType: dislike};
+            CommentService.giveRating(obj,
+                function(response){
+                    /*if(!response.data.success){
+                     $state.go('home');
+                     }else{*/
+                    //console.log(response.data);
+                    //}
+                }/*,
+                 function(response){
+                 $state.go('home');
+                 }*/);
+
+            $window.location.reload();
 
         }
 

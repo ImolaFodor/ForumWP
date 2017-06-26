@@ -8,6 +8,7 @@ import java.util.List;
  * Created by Imola on 6/2/2017.
  */
 public class Comment implements Serializable {
+    private long id;
     private String topic; //kojoj pripada
     private User author;
     private String date;
@@ -17,6 +18,7 @@ public class Comment implements Serializable {
     private int likesNo;
     private int dislikesNo;
     private boolean edited;
+    private String rateType;
 
     public String getTopic() {
         return topic;
@@ -88,6 +90,22 @@ public class Comment implements Serializable {
 
     public void setEdited(boolean edited) {
         this.edited = edited;
+    }
+
+    public String getRateType() {
+        return rateType;
+    }
+
+    public void setRateType(String rateType) {
+        this.rateType = rateType;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override

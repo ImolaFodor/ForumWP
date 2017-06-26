@@ -147,13 +147,13 @@
                 </div>-->
                 <div class="commentText">
                     <p class="">{{comment.content}}</p>
-                    <button class="social-like" ng-click="likedComment()">
+                    <button class="social-like" ng-click="likedComment(comment.id)">
                         <span class="like"><i class="glyphicon glyphicon-thumbs-up"></i></span>
-                        <span class="count" >0</span>
+                        <span class="count" >{{comment.likesNo}}</span>
                     </button>
                     &nbsp;
-                    <button class="social-dislike" ng-click="dislikedComment()">
-                        <span class="dislike" >0</span>
+                    <button class="social-dislike" ng-click="dislikedComment(comment.id)">
+                        <span class="dislike" >{{comment.dislikesNo}}</span>
                         <span class="like"><i class="glyphicon glyphicon-thumbs-down"></i></span>
                     </button>
                     <span class="date sub-text">{{comment.date}}</span> <span class="date sub-text">{{comment.author.username}}</span>

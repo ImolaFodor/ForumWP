@@ -22,6 +22,8 @@ public class CommentService {
                     new FileOutputStream("comments.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             for(Comment c : comments){
+                long dateId= new Date().getTime();
+                c.setId(dateId);
                 Date date=new Date();
                 Format formatter = new SimpleDateFormat("yyyy-MM-dd");
                 String s = formatter.format(date);
@@ -61,5 +63,28 @@ public class CommentService {
             i.printStackTrace();
             return new ArrayList<Comment>();
         }
+    }
+
+    public void giveRating(Comment rateInfo){
+        ArrayList<Comment> comments= readComments(rateInfo.getTopic());
+
+        Comment ratedComment= new Comment();
+        for(Comment c : comments){
+            if(c.getId()==rateInfo.getId() && rateInfo.getRateType().equals("like")){
+                ratedComment=c;
+                ratedComment.setLikesNo(c.getLikesNo()+1);
+                comments.remove(c);
+                break;
+            }else{
+                ratedComment=c;
+                ratedComment.setDislikesNo(c.getDislikesNo()+1);
+                comments.remove(c);
+                break;
+            }
+        }
+
+        comments.add(ratedComment);
+        writeComments(comments);
+
     }
 }
