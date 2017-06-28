@@ -16,6 +16,10 @@
         $scope.user = {};
         $scope.user.username="";
         $scope.user.role="";
+        $scope.user.name="";
+        $scope.user.lastName="";
+        $scope.user.phone="";
+        $scope.user.email="";
 
         $scope.signup = function(){
 

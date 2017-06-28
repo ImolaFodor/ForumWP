@@ -11,11 +11,10 @@ public class Topic implements Serializable {
     private String subForum; //kom pripada
     private String name; //jedinstven u okviru podforuma
     //private Blob icon;
-    private List<String> rules= new ArrayList<String>();
-    private enum User {
-        REGULAR,
-        MODERATOR,
-        ADMINISTRATOR
+    private enum type {
+        TEXT,
+        IMAGE,
+        LINK
     }
     private String author;
     private String date;
@@ -25,10 +24,9 @@ public class Topic implements Serializable {
     private int dislikesNo;
     private String rateType;
 
-    public Topic(String subForum, String name, List<String> rules, String author, String date, List<String> comments, int likesNo, int dislikesNo) {
+    public Topic(String subForum, String name, String author, String date, List<String> comments, int likesNo, int dislikesNo) {
         this.subForum = subForum;
         this.name = name;
-        this.rules = rules;
         this.author = author;
         this.date = date;
         this.comments = comments;
@@ -53,14 +51,6 @@ public class Topic implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<String> getRules() {
-        return rules;
-    }
-
-    public void setRules(List<String> rules) {
-        this.rules = rules;
     }
 
     public String getAuthor() {
@@ -124,7 +114,6 @@ public class Topic implements Serializable {
         return "Topic{" +
                 "subForum='" + subForum + '\'' +
                 ", name='" + name + '\'' +
-                ", rules=" + rules +
                 ", author='" + author + '\'' +
                 ", date='" + date + '\'' +
                 ", comments=" + comments +

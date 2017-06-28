@@ -32,8 +32,7 @@ public class CommentController {
     @RequestMapping(
             method = RequestMethod.POST)
     public ResponseEntity writeComment(@RequestBody Comment comment) {
-        System.out.println("usao u writeComment na BE"+ comment.getContent());
-        ArrayList<Comment> comments= commentService.readComments(comment.getTopic());
+
         commentService.writeComment(comment);
 
         return new ResponseEntity(comment, HttpStatus.OK);
@@ -53,7 +52,7 @@ public class CommentController {
     @RequestMapping(
             method = RequestMethod.DELETE)
     public ResponseEntity deleteComment(@RequestBody Comment comment) {
-        System.out.println("usao u deleteComment na BE"+ comment.getContent());
+
         commentService.deleteComment(comment);
 
         return new ResponseEntity(comment, HttpStatus.OK);
@@ -62,7 +61,7 @@ public class CommentController {
     @RequestMapping(
                 method = RequestMethod.PUT)
     public ResponseEntity editComment(@RequestBody Comment comment) {
-        System.out.println("usao u deleteComment na BE"+ comment.getContent());
+
         commentService.editComment(comment);
 
         return new ResponseEntity(comment, HttpStatus.OK);

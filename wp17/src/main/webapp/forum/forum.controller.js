@@ -13,11 +13,39 @@
         .module('bpm_app')
         .controller('ForumController', ForumController);
 
-    ForumController.$inject = ['$scope', '$state', 'AuthService', '$rootScope'];
+    ForumController.$inject = ['$scope','$location', '$state', 'ForumService', '$rootScope'];
 
-    function ForumController($scope, $state, AuthService, $rootScope) {
+    function ForumController($scope,$location, $state, ForumService, $rootScope) {
 
+        $scope.subforum={};
+        $scope.subforum.responsibleModerator="";
+        $scope.subforum.name="";
+        $scope.subforum.description="";
 
+        $scope.addSubForum = function(){
+
+            ForumService.addSubForum(
+                $scope.subforum,
+                function(res){
+                    // AuthService.saveToStorage("token", res.data.token);
+                    // AuthService.setHeader();
+                    // AuthService.me(
+                    //     function(res){
+                    //         $rootScope.user = res.data.user;
+                    //     },
+                    //     function(res){
+                    //
+                    //     });
+                    alert("Podforum je dodat!");
+                    $location.path("home/");
+                },
+                function(res){
+                    if(res.data){
+                        alert("Postoji podforum sa unetim nazivom!");
+                    }
+                    console.log(res);
+                });
+        }
 
 
     }

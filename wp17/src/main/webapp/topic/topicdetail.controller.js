@@ -9,12 +9,16 @@
         .module('bpm_app')
         .controller('TopicDetailController', TopicDetailController);
 
-    TopicDetailController.$inject = ['$window','$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService','CommentService'];
+    TopicDetailController.$inject = ['$window','$location','$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService','CommentService'];
 
-    function TopicDetailController($window, $scope, $state, AuthService, $rootScope, $stateParams, TopicService, CommentService) {
+    function TopicDetailController($window, $location, $scope, $state, AuthService, $rootScope, $stateParams, TopicService, CommentService) {
 
         $scope.isDisabled=true;
         $scope.showOkButton=false;
+        $scope.showEditContent=false;
+        $scope.showContent=true;
+        $scope.showEditTopicButton=true;
+        $scope.showConfirmEditButton=false;
 
         TopicService.getTopic($stateParams.subforum, $stateParams.name,
             function(response){
@@ -161,20 +165,6 @@
         $scope.editComment= function() {
             $scope.isDisabled=false;
             $scope.showOkButton=true;
-            /*var obj={topic: $stateParams.name,id: id, content: newContent};
-            CommentService.editComment(obj,
-                function(response){
-                    /!*if(!response.data.success){
-                     $state.go('home');
-                     }else{*!/
-                    //console.log(response.data);
-                    //}
-                }/!*,
-                 function(response){
-                 $state.go('home');
-                 }*!/);
-
-            $window.location.reload();*/
 
         }
 
@@ -196,7 +186,56 @@
 
         }
 
+        $scope.editTopic= function() {
 
+            $scope.showEditContent=true;
+            $scope.showContent=false;
+            $scope.showConfirmEditButton=true;
+            $scope.showEditTopicButton=false;
+
+
+        }
+
+        $scope.confirmEditTopic= function() {
+
+            var obj={name: $stateParams.name, content: $scope.topicdetail.content};
+
+            TopicService.editTopic(obj,
+             function(response){
+             /*if(!response.data.success){
+             $state.go('home');
+             }else{*/
+             //console.log(response.data);
+             //}
+
+                 console.log(response.data);
+                 $scope.topicdetail=response.data;
+             }/*,
+             function(response){
+             $state.go('home');
+             }*/);
+             $window.location.reload();
+        }
+
+        $scope.deleteTopic= function() {
+
+            var obj={name: $stateParams.name, subforum: $stateParams.subforum};
+
+            TopicService.deleteTopic(obj,
+                function(response){
+                    /*if(!response.data.success){
+                     $state.go('home');
+                     }else{*/
+                    //console.log(response.data);
+                    //}
+
+                    alert("Izbrisana tema!");
+                }/*,
+                 function(response){
+                 $state.go('home');
+                 }*/);
+            $location.path("/topic"+$stateParams.subforum + "/" + $stateParams.name)
+        }
 
 
 

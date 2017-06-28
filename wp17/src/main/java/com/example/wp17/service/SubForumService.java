@@ -51,7 +51,20 @@ import java.util.ArrayList;
             writeSubForums(subforums);
         }
 
+        public void deleteSubForum(String name){
 
+            ArrayList<SubForum> subForums= readSubForums();
+
+            for(SubForum sf : subForums){
+                if(sf.getName().equals(name)){
+                    subForums.remove(sf);
+                    break;
+                }
+            }
+
+            writeSubForums(subForums);
+
+        }
     }
 
 

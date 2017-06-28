@@ -9,9 +9,9 @@
         .module('bpm_app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', '$state', 'ForumService'];
+    HomeController.$inject = ['$scope','$window','$location', '$state', 'ForumService'];
 
-    function HomeController ($scope, $state, ForumService) {
+    function HomeController ($scope,$window, $location, $state, ForumService) {
 
 
         ForumService.getSubForums(
@@ -30,6 +30,24 @@
         /*$scope.start = function(){
             $state.go('process');
         }*/
+
+        $scope.deleteSubForum= function(name) {
+
+            ForumService.deleteSubForum(name,
+                function(response){
+                    /*if(!response.data.success){
+                     $state.go('home');
+                     }else{*/
+                    //console.log(response.data);
+                    //}
+
+                    alert("Izbrisan podforum!");
+                }/*,
+                 function(response){
+                 $state.go('home');
+                 }*/);
+            $window.location.reload();
+        }
 
 
 

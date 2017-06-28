@@ -14,11 +14,11 @@
     function stateConfig($stateProvider, $urlRouterProvider) {
 
         $stateProvider
-            .state('forum', {
-                    url: '/forum',
+            .state('newsubforum', {
+                    url: '/newforum',
                     views: {
                         'content@': {
-                            templateUrl: 'forum/forum.html',
+                            templateUrl: 'forum/newforum.html',
                             controller: 'ForumController'
                         },
                         'navbar':{

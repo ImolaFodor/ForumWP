@@ -23,6 +23,28 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            deleteSubForum: function(obj,onSuccess, onError){
+                var req = {
+                    method: 'DELETE',
+                    url: '/api/forum',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
+            addSubForum: function(obj,onSuccess, onError){
+                var req = {
+                    method: 'POST',
+                    url: '/api/forum',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             me: function(onSuccess, onError){
             var req = {
                 method: 'GET',

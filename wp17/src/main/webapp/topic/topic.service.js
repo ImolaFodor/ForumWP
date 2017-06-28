@@ -37,6 +37,39 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            addTopic: function(obj, onSuccess, onError){
+                var req = {
+                    method: 'POST',
+                    url: '/api/topic/newtopic',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
+            editTopic: function(obj, onSuccess, onError){
+                var req = {
+                    method: 'PUT',
+                    url: '/api/topic/',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
+            deleteTopic: function(obj, onSuccess, onError){
+                var req = {
+                    method: 'DELETE',
+                    url: '/api/topic/',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             giveRating: function(obj, onSuccess, onError){
                 var req = {
                     method: 'POST',

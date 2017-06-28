@@ -26,7 +26,7 @@ public class SubForumController {
 
     @RequestMapping(
             method = RequestMethod.POST)
-    public ResponseEntity<SubForum> createItem(@RequestBody SubForum subforum) {
+    public ResponseEntity<SubForum> addSubForum(@RequestBody SubForum subforum) {
         subForumService.addSubForum(subforum);
         //System.out.println(subForumService.readSubForums());
         return new ResponseEntity<>(subforum, HttpStatus.OK);
@@ -38,5 +38,13 @@ public class SubForumController {
         //System.out.println(subForumService.readSubForums());
         ArrayList<SubForum> subforums= subForumService.readSubForums();
         return new ResponseEntity(subforums, HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.DELETE)
+    public ResponseEntity deleteTopic(@RequestBody String name) {
+        subForumService.deleteSubForum(name);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

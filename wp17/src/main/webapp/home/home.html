@@ -2,8 +2,8 @@
 
     <div class="col-md-12 col-xs-12 text-center">
 
-        <h2> HELLO!</h2>
-        <div ng-show="$root.user===undefined"> Please Login To Continue </div>
+        <h2> ZDRAVO!</h2>
+        <div ng-show="$root.user===undefined"> Molimo, ulogujte se! </div>
         <div ng-hide="$root.user===undefined">
             <h3> {{$root.user.firstName}} {{$root.user.lastName}}</h3>
             <!-- <div class="col-md-4 col-md-offset-4">
@@ -13,13 +13,13 @@
              </div>-->
         </div>
         <br><br>
-        <!-- <img src="assets/image.png" > -->
 
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>NAZIV PODFORUMA</th>
+                    <th></th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -37,16 +37,25 @@
                     </td>
                     <td>
                         <button type="submit"
-                                ui-sref="topic({id:subforum.id})"
+                                ui-sref="newtopic({name:subforum.name})"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>KREIRAJ TEMU</span>
                         </button>
 
                     </td>
+                    <td>
+                        <button type="submit" class="btn btn-info btn-sm" type="button" ng-click="deleteSubForum(subforum.name)">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;<span>BRISI PODFORUM</span>
+                        </button>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
-    </div>
 
+        <div style="float:left">
+            <button type="submit" ui-sref="newsubforum()" class="btn btn-info btn-sm" type="button">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;<span>DODAJ PODFORUM</span>
+            </button></div>
+    </div>
 </div>

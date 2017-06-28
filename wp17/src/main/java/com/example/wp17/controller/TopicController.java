@@ -46,9 +46,33 @@ public class TopicController {
             System.out.println("tema " + rateInfo.getName() + " koja pripada forumu " + rateInfo.getSubForum() + " je dobila like");
             topicService.giveRating(rateInfo);
         }else{
-            System.out.println("tema " + rateInfo.getName() + " je dobila dislike");
             topicService.giveRating(rateInfo);
         }
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.POST,value = "/newtopic")
+    public ResponseEntity addTopic(@RequestBody Topic topic) {
+
+            topicService.addTopic(topic);
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.PUT)
+    public ResponseEntity editTopic(@RequestBody Topic t) {
+            Topic topic= topicService.editTopic(t);
+
+        return new ResponseEntity(topic,HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.DELETE)
+    public ResponseEntity deleteTopic(@RequestBody Topic t) {
+        topicService.deleteTopic(t);
+
         return new ResponseEntity(HttpStatus.OK);
     }
 }

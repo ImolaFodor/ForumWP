@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova tema</title>
+</head>
+<body>
+<h1 style="text-align: center">Nov Podforum</h1>
+
+<div class="col-md-4 col-md-offset-4">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Odgovorni moderator</span>
+        <input type="text" class="form-control" placeholder="logged user" ng-model="subforum.responsibleModerator" ng-disabled="true">
+
+    </div>
+    <!--<br>
+    <div class="input-group">
+        <span  class="input-group-addon" id="basic-addon4">Moderatori</span>
+        <div class="form-group">
+            <select class="form-control" ng-model="selectedTopicType" ng-options="tt for tt in topicTypes"></select></div>
+    </div>-->
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon2">Naslov</span>
+        <input type="text" class="form-control" ng-model="subforum.name">
+    </div>
+    <br>
+    <div class="input-group">
+        <span  class="input-group-addon" id="basic-addon4">Pravila</span>
+        <div class="form-group">
+            <select class="form-control" ng-model="selectedTopicType" ng-options="tt for tt in subforum.rules"></select></div>
+    </div>
+
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">Opis</span>
+        <textarea type="text" class="form-control" ng-model="subforum.description"></textarea>
+    </div>
+    <br>
+    <div class="col-md-4 col-md-offset-4">
+        <button class="btn btn-primary" type="button" ng-click="addSubForum()">
+            Dodaj
+        </button>
+    </div>
+</div>
+</body>
+</html>

@@ -46,6 +46,20 @@
                     }
                 }
             )
+            .state('newtopic', {
+                    url: '/newtopic/{name}',
+                    views: {
+                        'content@': {
+                            templateUrl: 'topic/newtopic.html',
+                            controller: 'NewTopicController'
+                        },
+                        'navbar':{
+                            templateUrl: 'navbar/navbar.html',
+                            controller: 'NavbarController'
+                        }
+                    }
+                }
+            )
     }
 
 })();

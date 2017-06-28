@@ -5,7 +5,10 @@ import com.example.wp17.model.Topic;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Imola on 6/2/2017.
@@ -31,7 +34,6 @@ public class TopicService {
 
 
     public ArrayList<Topic> readTopics(String name){
-        System.out.println("usao u servis topica");
         ArrayList<Topic> allTopics = null;
         ArrayList<Topic> topics = new ArrayList<Topic>();
         try {
@@ -107,6 +109,69 @@ public class TopicService {
             }
             topics.add(topic);
             writeTopics(topics);
+    }
+
+    public void addTopic(Topic t){
+        Topic topic= new Topic();
+
+        System.out.println("Tema treba da se napravi za podforum " + t.getSubForum());
+
+        topic.setContent(t.getContent());
+        topic.setAuthor("ulogovaniautor");
+        Date date=new Date();
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String s = formatter.format(date);
+        topic.setDate(s);
+        topic.setName(t.getName());
+        topic.setSubForum(t.getSubForum());
+
+        ArrayList<Topic> topics= readTopics(t.getSubForum());
+
+        topics.add(topic);
+        writeTopics(topics);
+    }
+
+    public void deleteTopic(Topic t){
+        Topic topic= readTopic(t.getName());
+
+        ArrayList<Topic> topics= readTopics(t.getSubForum());
+
+        for(Topic ts : topics){
+            if(ts.getName().equals(t.getName())){
+                topics.remove(ts);
+                break;
+            }
+        }
+
+        writeTopics(topics);
+
+    }
+
+    public Topic editTopic(Topic t){
+        Topic topic= readTopic(t.getName());
+
+        topic.setContent(t.getContent());
+
+        System.out.println("Tema koja se menja " + t.getName());
+        Date date=new Date();
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String s = formatter.format(date);
+        topic.setDate(s);
+
+        ArrayList<Topic> topics= readTopics(t.getSubForum());
+
+        for(Topic ts : topics){
+            if(ts.getName().equals(t.getName())){
+                topics.remove(ts);
+                break;
+            }
+        }
+
+        topics.add(topic);
+        writeTopics(topics);
+
+        return topic;
+
     }
 
 
