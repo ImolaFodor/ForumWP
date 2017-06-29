@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Korisnici</title>
+</head>
+<body>
+<table class="table table-striped">
+    <tr>
+        <td align="left">Trazi po imenu: </td>
+        <td><input class="form-control" ng-model="username" /></td>
+    </tr>
+
+</table>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>KORISNICKO IME</th>
+            <th>IME</th>
+            <th>PREZIME</th>
+            <th>ULOGA</th>
+            <th>TELEFON</th>
+            <th>E-MAIL</th>
+            <th>DATUM REGISTRACIJE</th>
+
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users | filter: username">
+            <td>{{user.username}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.surname}}</td>
+            <td>{{user.role}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.registrationDate}}</td>
+            <td>
+                <button type="submit"
+                        ui-sref="topicdetail({subforum:topic.subForum,name:topic.name})"
+                        class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>PROMENI TIP</span>
+                </button>
+            </td>
+            <td>
+                <button type="submit"
+                        ng-click="sendMessage()"
+                        class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>POSALJI PORUKU</span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

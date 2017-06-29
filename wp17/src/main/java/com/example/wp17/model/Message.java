@@ -10,6 +10,7 @@ import java.util.List;
 public class Message implements Serializable {
     private String sender; //kojoj pripada
     private String recipient;
+    private String subject;
     private String content;
     private boolean read;
 
@@ -27,6 +28,14 @@ public class Message implements Serializable {
 
     public void setRecipient(String recipient) {
         this.recipient = recipient;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getContent() {

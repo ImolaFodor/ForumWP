@@ -12,7 +12,8 @@
     HomeController.$inject = ['$scope','$window','$location', '$state', 'ForumService'];
 
     function HomeController ($scope,$window, $location, $state, ForumService) {
-
+        $scope.query = {}
+        $scope.queryBy = '$'
 
         ForumService.getSubForums(
             function(response){

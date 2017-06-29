@@ -28,7 +28,7 @@ public class Wp17Application {
 	}
 
 	@Bean
-	CommandLineRunner init(final CommentService commentService) {
+	CommandLineRunner init(final TopicService topicService) {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... strings) throws Exception {

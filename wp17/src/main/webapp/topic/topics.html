@@ -5,6 +5,24 @@
     <title>Teme</title>
 </head>
 <body>
+<table class="table table-striped">
+    <tr>
+        <td align="right">Trazi po :</td>
+        <td>
+            <select class="form-control" ng-model="queryBy">
+                <option value="$"></option>
+                <option value="name">Naslov</option>
+                <option value="content">Sadrzaj</option>
+                <option value="author">Autor</option>
+                <option value="subforum">Podforum</option>
+            </select>
+        </td>
+
+        <td align="left">Trazi: </td>
+        <td><input class="form-control" ng-model="query[queryBy]" /></td>
+    </tr>
+
+</table>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -14,7 +32,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="topic in topics">
+        <tr ng-repeat="topic in topics | filter:query">
             <td>{{topic.name}}</td>
             <td>
                 <button type="submit"

@@ -20,6 +20,8 @@
     TopicController.$inject = ['$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService'];
 
     function TopicController($scope, $state, AuthService, $rootScope, $stateParams, TopicService) {
+        $scope.query = {};
+        $scope.queryBy = '$';
 
         TopicService.getTopics($stateParams.name,
             function(response){

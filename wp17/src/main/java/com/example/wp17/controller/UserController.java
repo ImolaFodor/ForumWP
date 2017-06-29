@@ -24,6 +24,14 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(
+            method = RequestMethod.GET)
+    public ResponseEntity getUsers() {
+        //System.out.println(subForumService.readSubForums());
+        ArrayList<User> users= userService.readUsers();
+        return new ResponseEntity(users, HttpStatus.OK);
+    }
+
+    @RequestMapping(
             method = RequestMethod.POST)
     public ResponseEntity<Boolean> createUser(@RequestBody User user) {
         Boolean isFound= userService.addUser(user);

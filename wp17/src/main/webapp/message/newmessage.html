@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h1 style="text-align: center">Nova Poruka</h1>
+
+<div class="col-md-4 col-md-offset-4">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon2">Predmet</span>
+        <input type="text" class="form-control" ng-model="messsage.subject">
+    </div>
+
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">Telo</span>
+        <textarea type="text" class="form-control" ng-model="message.content"></textarea>
+    </div>
+    <br>
+    <div class="col-md-4 col-md-offset-4">
+        <input type="button" value="Posalji" ng-click="closeThisDialog(message.subject,message.content)"/>
+    </div>
+</div>
+</body>
+</html>
