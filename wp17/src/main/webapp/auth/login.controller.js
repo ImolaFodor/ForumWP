@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-        .module('bpm_app')
+        .module('angular')
         .controller('LoginController', LoginController);
 
     LoginController.$inject = ['$scope', '$state', 'AuthService', '$rootScope'];

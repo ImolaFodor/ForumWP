@@ -10,7 +10,7 @@
     'use strict';
 
     angular
-        .module('bpm_app')
+        .module('angular')
         .controller('ForumController', ForumController);
 
     ForumController.$inject = ['$scope','$location', '$state', 'ForumService', '$rootScope'];

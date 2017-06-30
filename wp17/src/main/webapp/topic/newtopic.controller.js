@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-        .module('bpm_app')
+        .module('angular')
         .controller('NewTopicController', NewTopicController);
 
     NewTopicController.$inject = ['$window', '$location','$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService','CommentService'];

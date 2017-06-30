@@ -5,7 +5,7 @@
 (function() {
 
     angular
-        .module('bpm_app')
+        .module('angular')
         .factory('UserService', UserService);
 
     UserService.$inject = ['$http'];

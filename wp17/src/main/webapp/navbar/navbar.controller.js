@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-        .module('bpm_app')
+        .module('angular')
         .controller('NavbarController', NavbarController);
 
     NavbarController.$inject = ['$scope', '$state', 'AuthService', '$rootScope'];

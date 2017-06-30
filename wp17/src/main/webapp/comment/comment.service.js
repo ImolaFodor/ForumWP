@@ -6,7 +6,7 @@
 (function() {
 
     angular
-        .module('bpm_app')
+        .module('angular')
         .factory('CommentService', CommentService);
 
     CommentService.$inject = ['$http'];

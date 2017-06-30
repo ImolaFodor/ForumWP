@@ -6,8 +6,8 @@
     'use strict';
 
     angular
-        .module('bpm_app',
-            ['ui.router'])
+        .module('angular',
+            ['ui.router', 'ngDialog'])
         .run(run);
 
 

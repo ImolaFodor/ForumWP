@@ -14,7 +14,7 @@
     'use strict';
 
     angular
-        .module('bpm_app')
+        .module('angular')
         .controller('TopicController', TopicController);
 
     TopicController.$inject = ['$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService'];

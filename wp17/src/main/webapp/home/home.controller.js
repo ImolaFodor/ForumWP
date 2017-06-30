@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-        .module('bpm_app')
+        .module('angular')
         .controller('HomeController', HomeController);
 
     HomeController.$inject = ['$scope','$window','$location', '$state', 'ForumService'];

@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-        .module('bpm_app')
+        .module('angular')
         .config(stateConfig);
 
     stateConfig.$inject = ['$stateProvider', '$urlRouterProvider'];

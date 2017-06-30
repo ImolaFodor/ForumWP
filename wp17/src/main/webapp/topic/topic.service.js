@@ -9,7 +9,7 @@
 (function() {
 
     angular
-        .module('bpm_app')
+        .module('angular')
         .factory('TopicService', TopicService);
 
     TopicService.$inject = ['$http'];

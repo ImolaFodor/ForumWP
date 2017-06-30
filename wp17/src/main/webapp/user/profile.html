@@ -132,12 +132,12 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="message in messages">
-                        <td>{{subforum.sender}}</td>
-                        <td>{{subforum.recipient}}</td>
-                        <td>{{subforum.subject}}</td>
+                        <td>{{message.sender}}</td>
+                        <td>{{message.recipient}}</td>
+                        <td>{{message.subject}}</td>
                         <td>
                             <button type="submit"
-                                    ng-click="seeMessage()"
+                                    ng-click="seeMessage(message.subject, message.content, message.recipient)"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>VIDI PORUKU</span>
                             </button>

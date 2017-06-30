@@ -1,25 +1,26 @@
 
-<h1 style="text-align: center">Nova Poruka</h1>
+<h1 style="text-align: center">Poruka</h1>
 
-<div class="col-md-4 col-md-offset-4">
+
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">Primalac</span>
-        <input type="text" class="form-control" ng-model="recipient">
+        <input ng-disabled= "true" type="text" class="form-control" ng-model="recipient">
     </div>
 
     <br>
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon2">Predmet</span>
-        <input type="text" class="form-control" ng-model="subject">
+        <input ng-disabled= "true" type="text" class="form-control" ng-model="subject">
     </div>
 
     <br>
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon3">Telo</span>
-        <textarea type="text" class="form-control" ng-model="content"></textarea>
+        <textarea ng-disabled= "true" type="text" class="form-control" ng-model="content"></textarea>
     </div>
     <br>
+
     <div class="col-md-4 col-md-offset-4">
-        <input type="button" value="Posalji" ng-click="confirmSendMessage(subject, content)"/>
+    <input type="button" value="OK" ng-click="closeThisDialog()"/>
     </div>
 </div>
