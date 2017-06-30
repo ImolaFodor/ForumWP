@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Žalbe</title>
+</head>
+<body>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ŽALILAC</th>
+            <th>AUTOR ENTITETA</th>
+            <th>DATUM</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="complaint in complaints">
+            <td>{{complaint.complainer}}</td>
+            <td>{{complaint.author}}</td>
+            <td>{{complaint.date}}</td>
+            <td>
+                <button type="submit"
+                        ng-click="seeContent(complaint.content)"
+                        class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>POGLEDAJ SADRZAJ ENTITETA</span>
+                </button>
+            </td>
+            <td>
+                <button type="submit"
+                        ng-click="sendMessage()"
+                        class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>BRIŠI ENTITET ŽALBE</span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
