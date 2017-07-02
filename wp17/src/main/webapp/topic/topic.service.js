@@ -59,6 +59,17 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            saveTopic: function(obj, onSuccess, onError){
+                var req = {
+                    method: 'PUT',
+                    url: '/api/topic/save',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             deleteTopic: function(obj, onSuccess, onError){
                 var req = {
                     method: 'DELETE',

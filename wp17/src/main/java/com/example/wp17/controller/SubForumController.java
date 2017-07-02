@@ -47,4 +47,12 @@ public class SubForumController {
 
         return new ResponseEntity(HttpStatus.OK);
     }
+    
+    @RequestMapping(
+            method = RequestMethod.POST, value="/follow")
+    public ResponseEntity followSubforum(@RequestBody String name) {
+        subForumService.followSubForum(name);
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

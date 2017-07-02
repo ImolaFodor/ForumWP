@@ -123,6 +123,9 @@
         <button class="btn btn-primary glyphicon glyphicon-trash" type="button" ng-click="deleteTopic()">
             Brisi
         </button>
+        <button class="btn btn-primary glyphicon glyphicon-save" type="button" ng-click="saveTopic()">
+            Snimi
+        </button>
     </div>
 <h1 style="padding: 10px">{{topicdetail.name}}</h1>
 <br>
@@ -134,12 +137,12 @@
         <textarea ng-show="showEditContent" type="text" class="form-control" ng-model="topicdetail.content"></textarea>
     </div>
 <br>
-<button class="social-like" ng-click="likedTopic() " >
+<button ng-disabled="disableTopicLike"class="social-like" ng-click="likedTopic() " >
     <span class="like"><i class="glyphicon glyphicon-thumbs-up"></i></span>
     <span class="count" >{{topicdetail.likesNo}}</span>
 </button>
 &nbsp;
-<button class="social-dislike" ng-click="dislikedTopic()" >
+<button ng-disabled="disableTopicDislike" class="social-dislike" ng-click="dislikedTopic()" >
     <span class="dislike" >{{topicdetail.dislikesNo}}</span>
     <span class="like"><i class="glyphicon glyphicon-thumbs-down"></i></span>
 </button>
@@ -150,10 +153,6 @@
         <label>Komentari</label>
         <button type="button" class="close" aria-hidden="true">&times;</button>
     </div>
-    <div class="commentBox">
-
-        <p class="taskDescription">Daj svoje misljenje!</p>
-    </div>
     <div class="actionBox">
         <ul class="commentList">
             <li ng-repeat="comment in comments">
@@ -162,12 +161,12 @@
                 </div>-->
                 <div class="commentText">
                     <div><input class="form-control" style="width: 300px" type="text" ng-model="comment.content" ng-disabled="isDisabled"></input> <button class="social-like glyphicon glyphicon-ok" style="float: right" ng-click="confirmEditComment(comment.id,comment.content)" ng-show="showOkButton"> </button></div>
-                    <p style="padding-top: 5px"><button class="social-like" ng-click="likedComment(comment.id)">
+                    <p style="padding-top: 5px"><button ng-disabled="disableCommentLike" class="social-like" ng-click="likedComment(comment.id)">
                         <span class="like"><i class="glyphicon glyphicon-thumbs-up"></i></span>
                         <span class="count" >{{comment.likesNo}}</span>
                     </button>
                     &nbsp;
-                    <button class="social-dislike" ng-click="dislikedComment(comment.id)">
+                    <button ng-disabled="disableCommentDislike" class="social-dislike" ng-click="dislikedComment(comment.id)">
                         <span class="dislike" >{{comment.dislikesNo}}</span>
                         <span class="like"><i class="glyphicon glyphicon-thumbs-down"></i></span>
                     </button>
@@ -177,7 +176,7 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline" role="form">
+        <form ng-show="showAddComment" class="form-inline" role="form">
             <div class="form-group" >
                 <input class="form-control" type="text" ng-model="commentcontent" placeholder="Your comments" />
             </div>

@@ -67,6 +67,14 @@ public class TopicController {
 
         return new ResponseEntity(topic,HttpStatus.OK);
     }
+    
+    @RequestMapping(
+            method = RequestMethod.PUT, value="/save")
+    public ResponseEntity saveTopic(@RequestBody Topic t) {
+            Topic topic= topicService.saveTopic(t);
+
+        return new ResponseEntity(topic,HttpStatus.OK);
+    }
 
     @RequestMapping(
             method = RequestMethod.DELETE)

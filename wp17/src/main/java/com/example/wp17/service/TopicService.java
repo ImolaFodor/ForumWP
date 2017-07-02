@@ -2,7 +2,9 @@ package com.example.wp17.service;
 
 import com.example.wp17.model.SubForum;
 import com.example.wp17.model.Topic;
+import com.example.wp17.model.User;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -11,13 +13,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Imola on 6/2/2017.
  */
 @Service
 public class TopicService {
-
+	
+	@Autowired
+	UserService userService;
+	
+	User foundUser= new User();
+	
     public void writeTopics(ArrayList<Topic> topics){
 
         try {
@@ -169,12 +177,52 @@ public class TopicService {
         Topic topic= readTopic(t.getName());
 
         topic.setContent(t.getContent());
+        
 
         System.out.println("Tema koja se menja " + t.getName());
         Date date=new Date();
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         String s = formatter.format(date);
         topic.setDate(s);
+
+        ArrayList<Topic> topics= readTopics(t.getSubForum());
+
+        for(Topic ts : topics){
+            if(ts.getName().equals(t.getName())){
+                topics.remove(ts);
+                break;
+            }
+        }
+
+        topics.add(topic);
+        writeTopics(topics);
+
+        return topic;
+
+    }
+    
+    public Topic saveTopic(Topic t){
+        Topic topic= readTopic(t.getName());
+        List<String> savedTopics = new ArrayList();
+        User logged = userService.getLoggedUser();
+        System.out.println("Iz loggeduser fajla" + logged.getUsername());
+        ArrayList<User> users= userService.readUsers();
+        
+        for(User user : users){
+            if(user.getUsername().equals(logged.getUsername())){
+            	foundUser= user;
+            	users.remove(user);
+            	savedTopics.add(t.getName());
+            	foundUser.setSavedTopics(savedTopics);
+                break;
+            }
+        }
+        
+        users.add(foundUser);
+        
+        userService.writeUsers(users);
+        
+        System.out.println("Tema koja se cuva " + t.getName());
 
         ArrayList<Topic> topics= readTopics(t.getSubForum());
 

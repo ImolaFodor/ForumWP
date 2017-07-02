@@ -2,8 +2,8 @@
 
     <div class="col-md-12 col-xs-12 text-center">
 
-        <h2> ZDRAVO!</h2>
-        <div ng-show="$root.user===undefined"> Molimo, ulogujte se! </div>
+        <h2> ZDRAVO {{logged.username}}</h2>
+        <div ng-show="$logged.username===undefined"> Molimo, ulogujte se! </div>
         <div ng-hide="$root.user===undefined">
             <h3> {{$root.user.firstName}} {{$root.user.lastName}}</h3>
             <!-- <div class="col-md-4 col-md-offset-4">
@@ -32,13 +32,68 @@
             </tr>
 
         </table>
+        
+        
 
 
+        
+        
+        <div ng-show="showFollowedSubForums" class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>NAZIV PRACENOG PODFORUMA</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="sf in followedSubForums| filter:query">
+                    <td>{{sf}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="topic({name:subforum})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>VIDI TEME</span>
+                        </button>
+
+                    </td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="newtopic({name:subforum.name})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>KREIRAJ TEMU</span>
+                        </button>
+
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-info btn-sm" type="button" ng-click="deleteSubForum(subforum.name)">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;<span>BRISI PODFORUM</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-info btn-sm" type="button" ng-click="complainOnSubForum(subforum.name,subforum.description)">
+                            <span class="glyphicon glyphicon-flash"></span>&nbsp;<span>ŽALBA</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-info btn-sm" type="button" ng-click="followSubForum(subforum.name)">
+                            <span class="glyphicon glyphicon-star"></span>&nbsp;<span></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>NAZIV PODFORUMA</th>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -71,6 +126,11 @@
                     <td>
                         <button type="submit" class="btn btn-info btn-sm" type="button" ng-click="complainOnSubForum(subforum.name,subforum.description)">
                             <span class="glyphicon glyphicon-flash"></span>&nbsp;<span>ŽALBA</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-info btn-sm" type="button" ng-click="followSubForum(subforum.name)">
+                            <span class="glyphicon glyphicon-star"></span>&nbsp;<span></span>
                         </button>
                     </td>
                 </tr>

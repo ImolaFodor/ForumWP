@@ -17,8 +17,8 @@ public class User implements Serializable {
     private String email;
     private String registrationDate;
     private List<String> followedSubForums= new ArrayList<String>();
-    private List<String> createdTopics= new ArrayList<String>();
-    private List<String> createdComments= new ArrayList<String>();
+    private List<String> savedTopics= new ArrayList<String>();
+    private List<String> savedComments= new ArrayList<String>();
     
     
 
@@ -99,23 +99,25 @@ public class User implements Serializable {
         this.followedSubForums = followedSubForums;
     }
 
-    public List<String> getCreatedTopics() {
-        return createdTopics;
-    }
+    
 
-    public void setCreatedTopics(List<String> createdTopics) {
-        this.createdTopics = createdTopics;
-    }
+    public List<String> getSavedTopics() {
+		return savedTopics;
+	}
 
-    public List<String> getCreatedComments() {
-        return createdComments;
-    }
+	public void setSavedTopics(List<String> savedTopics) {
+		this.savedTopics = savedTopics;
+	}
 
-    public void setCreatedComments(List<String> createdComments) {
-        this.createdComments = createdComments;
-    }
+	public List<String> getSavedComments() {
+		return savedComments;
+	}
 
-    @Override
+	public void setSavedComments(List<String> savedComments) {
+		this.savedComments = savedComments;
+	}
+
+	@Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
@@ -126,8 +128,8 @@ public class User implements Serializable {
                 ", email='" + email + '\'' +
                 ", registrationDate='" + registrationDate + '\'' +
                 ", followedSubForums=" + followedSubForums +
-                ", createdTopics=" + createdTopics +
-                ", createdComments=" + createdComments +
+                ", createdTopics=" + savedTopics +
+                ", createdComments=" + savedComments +
                 '}';
     }
 }

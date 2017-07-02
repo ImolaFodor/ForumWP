@@ -25,6 +25,8 @@
             	function(response){
                     console.log(response.data);
                     $scope.logged=response.data;
+                    console.log($scope.logged.savedTopics);
+                    $scope.savedTopics=$scope.logged.savedTopics;
                     
                     var loggedUser= {username: $scope.logged.username};
                     

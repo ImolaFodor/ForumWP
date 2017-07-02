@@ -45,6 +45,17 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            followSubForum: function(obj,onSuccess, onError){
+                var req = {
+                    method: 'POST',
+                    url: '/api/forum/follow',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             me: function(onSuccess, onError){
             var req = {
                 method: 'GET',

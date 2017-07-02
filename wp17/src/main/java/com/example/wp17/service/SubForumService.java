@@ -1,16 +1,25 @@
 package com.example.wp17.service;
 
 import com.example.wp17.model.SubForum;
+import com.example.wp17.model.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
     /**
      * Created by Imola on 6/2/2017.
      */
     @Service
     public class SubForumService {
+    	
+    	@Autowired
+    	UserService userService;
+    	
+    	User foundUser= new User();
 
         public void writeSubForums(ArrayList<SubForum> subforums){
 
@@ -64,6 +73,44 @@ import java.util.ArrayList;
 
             writeSubForums(subForums);
 
+        }
+        
+        public void followSubForum(String name){
+        	
+        	
+        	System.out.println("Da zaprati podforum" + name);
+            ArrayList<SubForum> subForums= readSubForums();
+            List<String> followedSubForums = new ArrayList();
+            User logged = userService.getLoggedUser();
+            System.out.println("Iz loggeduser fajla" + logged.getUsername());
+            ArrayList<User> users= userService.readUsers();
+            
+            for(User user : users){
+                if(user.getUsername().equals(logged.getUsername())){
+                	foundUser= user;
+                	followedSubForums= foundUser.getFollowedSubForums();
+                	users.remove(user);
+                    break;
+                }
+            }
+            
+            System.out.println("Korisnik koji je zapratio" + logged.getUsername());
+            
+            
+            System.out.println("Forumi koje dosad prati" + foundUser.getFollowedSubForums());
+
+            for(SubForum sf : subForums){
+                if(sf.getName().equals(name)){
+                	followedSubForums.add(sf.getName());
+                	foundUser.setFollowedSubForums(followedSubForums);
+                	
+                    break;
+                }
+            }
+            users.add(foundUser);
+            System.out.println("Forumi koje prati sad" + followedSubForums);
+            
+            userService.writeUsers(users);
         }
     }
 

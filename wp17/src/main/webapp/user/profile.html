@@ -69,7 +69,7 @@
                 </tbody>
             </table>
 
-            <h3>MOJE TEME</h3>
+            <h3>SNIMLJENE TEME</h3>
             <table class="table table-striped">
                 <tr>
                     <td align="right">Trazi po :</td>
@@ -97,11 +97,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="topic in mytopics | filter:query">
-                        <td>{{topic.name}}</td>
+                    <tr ng-repeat="topic in savedTopics | filter:query">
+                        <td>{{topic}}</td>
                         <td>
                             <button type="submit"
-                                    ui-sref="topicdetail({subforum:topic.subForum,name:topic.name})"
+                                    ui-sref="topicdetail({subforum:topic.subForum,name:topic})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>VIDI TEMU</span>
                             </button>
