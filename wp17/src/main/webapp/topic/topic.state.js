@@ -46,6 +46,20 @@
                     }
                 }
             )
+            .state('topicfromprofile', {
+                    url: '/topicfromprofile/{name}',
+                    views: {
+                        'content@': {
+                            templateUrl: 'topic/topicdetail.html',
+                            controller: 'TopicDetailController'
+                        },
+                        'navbar':{
+                            templateUrl: 'navbar/navbar.html',
+                            controller: 'NavbarController'
+                        }
+                    }
+                }
+            )
             .state('newtopic', {
                     url: '/newtopic/{name}',
                     views: {

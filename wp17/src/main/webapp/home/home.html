@@ -3,7 +3,7 @@
     <div class="col-md-12 col-xs-12 text-center">
 
         <h2> ZDRAVO {{logged.username}}</h2>
-        <div ng-show="$logged.username===undefined"> Molimo, ulogujte se! </div>
+        <div ng-show="showPleaseLogIn"> Molimo, ulogujte se! </div>
         <div ng-hide="$root.user===undefined">
             <h3> {{$root.user.firstName}} {{$root.user.lastName}}</h3>
             <!-- <div class="col-md-4 col-md-offset-4">

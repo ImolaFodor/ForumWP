@@ -38,6 +38,14 @@ public class TopicController {
         Topic topic= topicService.readTopic(name);
         return new ResponseEntity(topic, HttpStatus.OK);
     }
+    
+    @RequestMapping(
+            method = RequestMethod.GET,value = "/topicfromprofile/{name}")
+    public ResponseEntity getTopicFromProfile(@PathVariable("name") String name) {
+       //System.out.println("Iz kontrolera: "+ topicService.readTopic(name));
+        Topic topic= topicService.readTopic(name);
+        return new ResponseEntity(topic, HttpStatus.OK);
+    }
 
     @RequestMapping(
             method = RequestMethod.POST,value = "/rating")

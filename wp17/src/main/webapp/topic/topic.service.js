@@ -37,6 +37,16 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            getTopicFromProfile: function(name, onSuccess, onError){
+                var req = {
+                    method: 'GET',
+                    url: '/api/topic/topicfromprofile/'+name,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             addTopic: function(obj, onSuccess, onError){
                 var req = {
                     method: 'POST',

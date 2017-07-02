@@ -99,14 +99,11 @@ import java.util.List;
             
             System.out.println("Forumi koje dosad prati" + foundUser.getFollowedSubForums());
 
-            for(SubForum sf : subForums){
-                if(sf.getName().equals(name)){
-                	followedSubForums.add(sf.getName());
+            
+                	followedSubForums.add(name);
                 	foundUser.setFollowedSubForums(followedSubForums);
-                	
-                    break;
-                }
-            }
+                
+            
             users.add(foundUser);
             System.out.println("Forumi koje prati sad" + followedSubForums);
             

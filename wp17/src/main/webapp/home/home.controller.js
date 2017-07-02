@@ -15,6 +15,7 @@
         $scope.query = {}
         $scope.queryBy = '$'
         
+        
         AuthService.getLoggedUser(
             function(response){
                 /*if(!response.data.success){
@@ -35,6 +36,7 @@
                     
                     if($scope.logged.username){
         				$scope.showFollowedSubForums=true;
+        				$scope.showPleaseLogIn=false;
                     }
                      
                 //}
@@ -43,6 +45,7 @@
                 $state.go('home');
             }*/);
             
+        $scope.showPleaseLogIn=true;
         
         $scope.showFollowedSubForums=false;
         

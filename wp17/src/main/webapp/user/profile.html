@@ -42,11 +42,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="subforum in favsubforums | filter:query">
-                    <td>{{subforum.name}}</td>
+                <tr ng-repeat="subforum in followedSubForums | filter:query">
+                    <td>{{subforum}}</td>
                     <td>
                         <button type="submit"
-                                ui-sref="topic({name:subforum.name})"
+                                ui-sref="topic({name:subforum})"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>VIDI TEME</span>
                         </button>
@@ -68,6 +68,8 @@
                 </tr>
                 </tbody>
             </table>
+            
+            <br><br>
 
             <h3>SNIMLJENE TEME</h3>
             <table class="table table-striped">
@@ -101,7 +103,7 @@
                         <td>{{topic}}</td>
                         <td>
                             <button type="submit"
-                                    ui-sref="topicdetail({subforum:topic.subForum,name:topic})"
+                                    ui-sref="topicfromprofile({name:topic})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>VIDI TEMU</span>
                             </button>
@@ -113,13 +115,10 @@
 
 
         </div>
-
-        <div style="float:left">
-            <button type="submit" ui-sref="newsubforum()" class="btn btn-info btn-sm" type="button">
-                <span class="glyphicon glyphicon-plus"></span>&nbsp;<span>DODAJ PODFORUM</span>
-            </button></div>
-            </div>
-            <h2>INBOX</h2>
+	
+            <br><br>
+            
+            <h3>INBOX</h3>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -153,5 +152,17 @@
                     </tbody>
                 </table>
             </div>
-
+            
+            
+         </br></br>
+		
+		<div class="input-group col-xs-4">
+        <span class="input-group-addon " id="basic-addon1">Podeljeno pozitivnih glasova</span>
+        <input type="text" class="form-control " ng-model="likeNo" ng-disabled="true">
+		</div>
+		</br>
+		<div class="input-group col-xs-4">
+        <span class="input-group-addon" id="basic-addon1">Podeljeno negativnih glasova</span>
+        <input type="text" class="form-control .col-xs-2" ng-model="dislikeNo" ng-disabled="true">
+		</div>
  </div>
