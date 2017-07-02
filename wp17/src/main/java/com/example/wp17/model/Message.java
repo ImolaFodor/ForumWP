@@ -8,6 +8,7 @@ import java.util.List;
  * Created by Imola on 6/2/2017.
  */
 public class Message implements Serializable {
+	private long id;
     private String sender; //kojoj pripada
     private String recipient;
     private String subject;
@@ -20,6 +21,20 @@ public class Message implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+    
+    
+    
+	public long getId() {
+		return id;
+	}
+
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
 
 	public String getSender() {
         return sender;

@@ -1,11 +1,15 @@
 package com.example.wp17.controller;
 
+import com.example.wp17.model.Comment;
+import com.example.wp17.model.LoggedUser;
 import com.example.wp17.model.Message;
 import com.example.wp17.model.SubForum;
 import com.example.wp17.model.Topic;
+import com.example.wp17.model.User;
 import com.example.wp17.service.MessageService;
 import com.example.wp17.service.SubForumService;
 import com.example.wp17.service.TopicService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +42,14 @@ public class MessageController {
         ArrayList<Message> messages= messageService.readMessages();
         return new ResponseEntity(messages, HttpStatus.OK);
     }
+    
+    @RequestMapping(
+            method = RequestMethod.PUT)
+public ResponseEntity editMessage(@RequestBody Message message) {
+
+    messageService.editMessage(message);
+
+    return new ResponseEntity(message, HttpStatus.OK);
+}
 }
 

@@ -32,7 +32,7 @@
                 }
             )
             .state('userprofile', {
-                    url: '/users/{username}',
+                    url: '/userprofile',
                     views: {
                         'content@': {
                             templateUrl: 'user/profile.html',

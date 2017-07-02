@@ -124,6 +124,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
+                    	<th></th>
                         <th>POSILJALAC</th>
                         <th>PRIMALAC</th>
                         <th>PREDMET</th>
@@ -132,6 +133,11 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="message in messages">
+                    	<td>
+                    		<label class="btn btn-default active">
+        							<input type="checkbox" ng-checked="message.read">
+        					</label>
+                    	</td>
                         <td>{{message.sender}}</td>
                         <td>{{message.recipient}}</td>
                         <td>{{message.subject}}</td>

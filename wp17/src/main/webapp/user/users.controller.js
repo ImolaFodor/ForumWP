@@ -12,13 +12,35 @@
         .module('angular')
         .controller('UserController', UserController);
 
-    UserController.$inject = ['$scope','$window','$location', '$state', 'UserService','MessageService', 'ngDialog'];
-
-    function UserController ($scope,$window, $location, $state, UserService, MessageService, ngDialog) {
+    UserController.$inject = ['$scope','$window','$location', '$state', 'UserService','MessageService','AuthService', 'ngDialog'];
+		
+    function UserController ($scope,$window, $location, $state, UserService, MessageService, AuthService, ngDialog) {
         $scope.value = true;
         $scope.message={};
         $scope.message.subject=" ";
         $scope.message.content=" ";
+        
+        
+       AuthService.getLoggedUser(
+            	function(response){
+                    console.log(response.data);
+                    $scope.logged=response.data;
+                    
+                    var loggedUser= {username: $scope.logged.username};
+                    
+            		MessageService.getMessagesByRecipient(loggedUser,
+            function(response){
+                /*if(!response.data.success){
+                 $state.go('home');
+                 }else{*/
+                console.log(response.data);
+                $scope.messages=response.data;
+                //}
+            }/*,
+             function(response){
+             $state.go('home');
+             }*/);
+           		});
 
 
         UserService.getUsers(
@@ -33,37 +55,39 @@
              function(response){
              $state.go('home');
              }*/);
-
-        MessageService.getMessages(
-            function(response){
-                /*if(!response.data.success){
-                 $state.go('home');
-                 }else{*/
-                console.log(response.data);
-                $scope.messages=response.data;
-                //}
-            }/*,
-             function(response){
-             $state.go('home');
-             }*/);
-
-        /*$scope.start = function(){
-         $state.go('process');
-         }*/
+		
+		
+		
+        
 
         $scope.seeMessage= function(subject,content,recipient){
 
             $scope.message.recipient=recipient;
             $scope.message.subject=subject;
             $scope.message.content=content;
+            $scope.message.read=true;
+                     
+            $scope.message.sender= $scope.logged.username;
+            
+
+            
+        
 
             ngDialog.open({
                 template: 'message/message.html',
                 scope: $scope,
-                controller: ['$scope', function($scope) {
+                controller: ['$scope','MessageService', function($scope, $MessageService) {
                     $scope.content=$scope.$parent.message.content;
                     $scope.subject=$scope.$parent.message.subject;
                     $scope.recipient=$scope.$parent.message.recipient;
+                    
+                    var edited= {recipient: $scope.$parent.message.recipient, sender: $scope.logged.username, subject: $scope.$parent.message.subject, content: $scope.$parent.message.content, read: $scope.$parent.message.read}
+                    
+                    MessageService.editMessage(edited,
+             				function(response){
+             				console.log(response.data);
+                 				$scope.message=response.data;
+             				});
             }]
             });
         }
@@ -73,10 +97,20 @@
             ngDialog.open({
                 template: 'message/newmessage.html',
                 scope: $scope,
-                controller: ['$scope', function($scope) {
-                 $scope.confirmSendMessage= function(subject, content){
+                controller: ['$scope', 'AuthService', function($scope, $AuthService) {
+                 $scope.confirmSendMessage= function(subject, content, recipient){
                      $scope.$parent.message.subject=subject;
                      $scope.$parent.message.content=content;
+                     $scope.$parent.message.recipient= recipient;
+                     
+                     AuthService.getLoggedUser(
+            				function(response){
+                    			console.log(response.data);
+                    			$scope.logged=response.data;
+           					});
+                     
+                     $scope.$parent.message.sender= $scope.logged.username;
+                     
 
                      MessageService.addMessage($scope.$parent.message,
                          function(response){
@@ -106,7 +140,7 @@
         }
 
 
-
-    }
+}
+    
 
 })();

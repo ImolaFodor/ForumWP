@@ -31,10 +31,20 @@
                 
                 if($scope.topicdetail.type=="IMAGE"){
                 	$scope.showContent=false;
-                	$scope.showImageContent=true;
+                	$scope.showLinkContent=false;
+                		$scope.showImageContent=true;
                 	var str1 = "file:///";
 					var str2 = $scope.topicdetail.content;
 					$scope.img_source = str1.concat(str2);
+                	}
+                	if($scope.topicdetail.type=="LINK")
+                	{
+                	$scope.showContent=false;
+                	$scope.showImageContent=false;
+                		$scope.showLinkContent=true;
+                	var str3= "https://";
+                	var str4= $scope.topicdetail.content;
+                	$scope.linkContent=str3.concat(str4);
                 	}
                 
                 //}

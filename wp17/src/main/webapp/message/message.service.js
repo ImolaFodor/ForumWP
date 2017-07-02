@@ -13,10 +13,11 @@
     function MessageService($http){
 
         return{
-            getMessages: function(onSuccess, onError){
+            getMessagesByRecipient: function(obj, onSuccess, onError){
                 var req = {
                     method: 'GET',
-                    url: '/api/message',
+                    url: '/api/message/',
+                    data: obj,
                     headers: {
                         'Content-Type': 'application/json',
                     }
@@ -26,6 +27,17 @@
             addMessage: function(obj,onSuccess, onError){
                 var req = {
                     method: 'POST',
+                    url: '/api/message',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
+            editMessage: function(obj, onSuccess, onError){
+                var req = {
+                    method: 'PUT',
                     url: '/api/message',
                     data: obj,
                     headers: {
