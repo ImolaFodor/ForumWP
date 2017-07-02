@@ -5,13 +5,13 @@
             <li><a ui-sref="home">Home</a></li>
             <li> <a ui-sref="userprofile"> Moj profil </a> </li>
             <li> <a ui-sref="users"> Korisnici </a> </li>
-            <li> <a ui-sref="complaints"> Žalbe </a> </li>
+            <li> <a ui-sref="complaints" ng-show="showZalbe"> Žalbe </a> </li>
         </ul>
 
 
         <ul class="nav navbar-nav navbar-right">
             <li ng-show="$root.user===undefined"><a ui-sref="login">Login</a></li>
-            <li ng-hide="$root.user===undefined"><a ng-click="logout()">Logout</a></li>
+            <li ><a ng-click="logout()">Logout</a></li>
         </ul>
 
     </div>

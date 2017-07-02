@@ -14,8 +14,15 @@ public class SubForum implements Serializable {
     private List<String> rules= new ArrayList<String>();
     private String responsibleModerator;
     private List<String> moderators= new ArrayList<String>();
+    
+    
 
-    public String getName() {
+    public SubForum() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getName() {
         return name;
     }
 

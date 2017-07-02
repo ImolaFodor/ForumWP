@@ -9,11 +9,29 @@
         .module('angular')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope','$window','$location', '$state', 'ForumService','ComplaintService'];
+    HomeController.$inject = ['$scope','$window','$location', '$state', 'ForumService','ComplaintService','AuthService'];
 
-    function HomeController ($scope,$window, $location, $state, ForumService,ComplaintService) {
+    function HomeController ($scope,$window, $location, $state, ForumService,ComplaintService, AuthService) {
         $scope.query = {}
         $scope.queryBy = '$'
+        
+        AuthService.getLoggedUser(
+            function(response){
+                /*if(!response.data.success){
+                    $state.go('home');
+                }else{*/
+                    console.log(response.data);
+                    $scope.logged=response.data;
+                //}
+            }/*,
+            function(response){
+                $state.go('home');
+            }*/);
+
+        /*$scope.start = function(){
+            $state.go('process');
+        }*/
+        
 
         ForumService.getSubForums(
             function(response){

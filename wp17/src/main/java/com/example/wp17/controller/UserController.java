@@ -48,6 +48,7 @@ public class UserController {
             method = RequestMethod.POST,value = "/login")
     public ResponseEntity<Boolean> loginCheck(@RequestBody User user) {
         Boolean isFound= userService.checkUser(user);
+        
         //System.out.println(userService.readUsers());
         if(isFound){
             return new ResponseEntity<>(isFound, HttpStatus.OK);
@@ -55,5 +56,20 @@ public class UserController {
             return new ResponseEntity<>(isFound, HttpStatus.BAD_REQUEST);
         }
 
+    }
+    
+    @RequestMapping(
+            method = RequestMethod.DELETE,value = "/logout")
+    public ResponseEntity deleteLogged() {
+    	System.out.println("Izlogovace korisnika");
+        userService.deleteLoggedUser();
+        return new ResponseEntity(HttpStatus.OK);
+    }
+    
+    @RequestMapping(
+            method = RequestMethod.GET,value = "/logged")
+    public ResponseEntity<User> getLogged() {
+        User u= userService.getLoggedUser();
+        return new ResponseEntity<>(u, HttpStatus.OK);
     }
 }

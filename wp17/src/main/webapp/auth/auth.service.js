@@ -31,18 +31,25 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
-            me: function(onSuccess, onError){
+            getLoggedUser: function(onSuccess, onError){
                 var req = {
                     method: 'GET',
-                    url: '/api/user/me',
+                    url: '/api/users/logged',
                     headers: {
                         'Content-Type': 'application/json',
                     }
                 }
                 $http(req).then(onSuccess, onError);
             },
-            logout: function(){
-                //todo - remove from local storage
+            deleteLoggedUser: function(onSuccess, onError){
+                var req = {
+                    method: 'DELETE',
+                    url: '/api/users/logout',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
             },
             saveToStorage(id, val){
                 localStorage.setItem(id, val);

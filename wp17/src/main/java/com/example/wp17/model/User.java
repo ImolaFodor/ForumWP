@@ -19,8 +19,15 @@ public class User implements Serializable {
     private List<String> followedSubForums= new ArrayList<String>();
     private List<String> createdTopics= new ArrayList<String>();
     private List<String> createdComments= new ArrayList<String>();
+    
+    
 
-    public String getUsername() {
+    public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getUsername() {
         return username;
     }
 

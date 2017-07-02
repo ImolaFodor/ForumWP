@@ -14,7 +14,7 @@
     function LoginController($scope, $state, AuthService, $rootScope) {
 
         $scope.user = {};
-        $scope.user.id="";
+        $scope.user.username="";
         $scope.user.password="";
 
         $scope.login = function(){

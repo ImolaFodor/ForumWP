@@ -19,8 +19,15 @@ public class Comment implements Serializable {
     private int dislikesNo;
     private boolean edited;
     private String rateType;
+    
+    
 
-    public String getTopic() {
+    public Comment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getTopic() {
         return topic;
     }
 

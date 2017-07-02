@@ -13,8 +13,15 @@ public class Message implements Serializable {
     private String subject;
     private String content;
     private boolean read;
+    
+    
 
-    public String getSender() {
+    public Message() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getSender() {
         return sender;
     }
 

@@ -20,9 +20,12 @@
         $scope.user.lastName="";
         $scope.user.phone="";
         $scope.user.email="";
+        
+        $scope.roles=["KORISNIK", "MODERATOR", "ADMIN"];
 
         $scope.signup = function(){
-
+			$scope.user.role=$scope.selectedRole;
+			alert($scope.user.role);
             AuthService.signup(
                 $scope.user,
                 function(res){

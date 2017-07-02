@@ -21,8 +21,16 @@ public class Complaint implements Serializable {
         this.name = name;
         this.id = id;
     }
+    
 
-    public String getComplainer() {
+
+
+	public Complaint() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public String getComplainer() {
         return complainer;
     }
 

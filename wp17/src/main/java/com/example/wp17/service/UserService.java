@@ -1,6 +1,8 @@
 package com.example.wp17.service;
 
+import com.example.wp17.model.Topic;
 import com.example.wp17.model.User;
+
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -27,7 +29,21 @@ public class UserService {
         }
     }
 
+    public void writeLoggedUser(User user){
 
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream("loggeduser.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            System.out.println("Uloga korisnika koji hoce da se uloguje "+ user.getRole());
+            out.writeObject(user);
+            out.close();
+            fileOut.close();
+            System.out.printf("saved");
+        }catch(IOException i) {
+            i.printStackTrace();
+        }
+    }
 
     public ArrayList<User> readUsers(){
 
@@ -70,11 +86,44 @@ public class UserService {
         ArrayList<User> users = readUsers();
         //System.out.println("korisnici bez dodatog:"+users+"novi korisnik"+user);
         for(User u : users){
-            if(u.getUsername().equals(user.getUsername())){
+            if(u.getUsername().equals(user.getUsername()) && u.getPassword().equals(user.getPassword())){
                 isFound=true;
+                writeLoggedUser(u);
             }
         }
         return isFound;
+    }
+    
+    public User getLoggedUser(){
+
+        User u= new User();
+        try {
+            FileInputStream fileIn = new FileInputStream("loggeduser.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            u = (User) in.readObject();
+            in.close();
+            fileIn.close();
+            return u;
+        }catch(Exception i) {
+            i.printStackTrace();
+            return new User();
+        }
+    }
+    
+    public void deleteLoggedUser(){
+    	User user= getLoggedUser();
+
+    	PrintWriter writer;
+		try {
+			writer = new PrintWriter("loggeduser.ser");
+			writer.print(" ");
+	    	writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+
     }
 
 

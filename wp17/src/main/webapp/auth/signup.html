@@ -35,9 +35,10 @@
         </div>
         <br>
         <div class="input-group">
-            <span class="input-group-addon" id="basic-addon7">Role</span>
-            <input class="form-control" ng-model="user.role">
-        </div>
+    <span  class="input-group-addon" id="basic-addon9">Uloga</span>
+    <div class="form-group">
+        <select class="form-control" ng-model="selectedRole" ng-options="r for r in roles"></select></div>
+</div>
         <br>
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon8">Phone</span>
