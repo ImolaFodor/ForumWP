@@ -11,7 +11,7 @@ public class SubForum implements Serializable {
     private String name;
     private String description;
     //private Blob icon;
-    private List<String> rules= new ArrayList<String>();
+    private String rules;
     private String responsibleModerator;
     private List<String> moderators= new ArrayList<String>();
     
@@ -38,11 +38,11 @@ public class SubForum implements Serializable {
         this.description = description;
     }
 
-    public List<String> getRules() {
+    public String getRules() {
         return rules;
     }
 
-    public void setRules(List<String> rules) {
+    public void setRules(String rules) {
         this.rules = rules;
     }
 

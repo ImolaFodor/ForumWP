@@ -17,7 +17,7 @@
 <div class="input-group">
     <span  class="input-group-addon" id="basic-addon4">Tip</span>
     <div class="form-group">
-        <select class="form-control" ng-model="selectedTopicType" ng-options="tt for tt in topicTypes"></select></div>
+        <select class="form-control" ng-model="selectedTopicType" ng-options="tt for tt in topicTypes" ng-change="changeInTypes()"></select></div>
 </div>
 <br>
 <div class="input-group">
@@ -25,9 +25,14 @@
     <input type="text" class="form-control" ng-model="topic.name">
 </div>
 <br>
-<div class="input-group">
+<div ng-show="showUpload" class="input-group">
     <span class="input-group-addon" id="basic-addon3">Sadrzaj</span>
-    <textarea type="text" class="form-control" ng-model="topic.content"></textarea>
+    		<input type="file" id="file" name="file"/>
+		<button ng-click="addImage()">Add</button>
+</div>
+<div class="input-group" ng-show="showText">
+    <span class="input-group-addon" id="basic-addon3">Sadrzaj</span>
+    		<textarea type="text" class="form-control" ng-model="topic.content" ng-show="showText"></textarea>
 </div>
 <br>
 <div class="col-md-4 col-md-offset-4">

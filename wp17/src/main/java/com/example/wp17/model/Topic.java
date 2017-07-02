@@ -11,11 +11,7 @@ public class Topic implements Serializable {
     private String subForum; //kom pripada
     private String name; //jedinstven u okviru podforuma
     //private Blob icon;
-    private enum type {
-        TEXT,
-        IMAGE,
-        LINK
-    }
+    String type;
     private String author;
     private String date;
     private String content;
@@ -52,8 +48,16 @@ public class Topic implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public String getType() {
+		return type;
+	}
 
-    public String getAuthor() {
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getAuthor() {
         return author;
     }
 

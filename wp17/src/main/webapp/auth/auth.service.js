@@ -51,6 +51,16 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            me: function(onSuccess, onError){
+                var req = {
+                    method: 'GET',
+                    url: '/api/user/me',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             saveToStorage(id, val){
                 localStorage.setItem(id, val);
             },

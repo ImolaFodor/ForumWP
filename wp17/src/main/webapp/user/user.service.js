@@ -23,6 +23,16 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            getModerators: function(onSuccess, onError){
+                var req = {
+                    method: 'GET',
+                    url: '/api/users/mods',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             me: function(onSuccess, onError){
                 var req = {
                     method: 'GET',

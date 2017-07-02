@@ -9,15 +9,44 @@
         .module('angular')
         .controller('ForumController', ForumController);
 
-    ForumController.$inject = ['$scope','$location', '$state', 'ForumService', '$rootScope'];
+    ForumController.$inject = ['$scope','$location', '$state', 'ForumService', 'AuthService','UserService','$rootScope'];
 
-    function ForumController($scope,$location, $state, ForumService, $rootScope) {
+    function ForumController($scope,$location, $state, ForumService, AuthService, UserService, $rootScope) {
 
         $scope.subforum={};
-        $scope.subforum.responsibleModerator="";
+        
         $scope.subforum.name="";
         $scope.subforum.description="";
-
+        
+        UserService.getModerators(
+            function(response){
+                /*if(!response.data.success){
+                    $state.go('home');
+                }else{*/
+                    console.log(response.data);
+                    $scope.moderators=response.data;
+                //}
+            }/*,
+            function(response){
+                $state.go('home');
+            }*/);
+        
+        AuthService.getLoggedUser(
+            function(response){
+                /*if(!response.data.success){
+                    $state.go('home');
+                }else{*/
+                    console.log(response.data);
+                    $scope.logged=response.data;
+                    $scope.subforum.responsibleModerator=$scope.logged.username;
+                //}
+            }/*,
+            function(response){
+                $state.go('home');
+            }*/);
+		
+		
+		
         $scope.addSubForum = function(){
 
             ForumService.addSubForum(

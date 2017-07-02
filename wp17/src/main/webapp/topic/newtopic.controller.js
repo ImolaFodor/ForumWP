@@ -12,18 +12,37 @@
     NewTopicController.$inject = ['$window', '$location','$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService','CommentService'];
 
     function NewTopicController($window, $location, $scope, $state, AuthService, $rootScope, $stateParams, TopicService, CommentService) {
-
-    $scope.topicTypes=["TEXT", "IMAGE", "LINK"];
-
-    $scope.topic={};
+	$scope.showUpload=false;
+	$scope.showText=true;
+	
+	$scope.topic={};
         $scope.topic.author="";
-        $scope.topic.type="";
         $scope.topic.title="";
         $scope.topic.content="";
         $scope.topic.subForum=$stateParams.name;
+        $scope.fileURL="";
+	
+    $scope.topicTypes=["TEXT", "IMAGE", "LINK"];
+    
+    $scope.changeInTypes= function(){
+    	
+    	if($scope.selectedTopicType=="IMAGE"){
+    		$scope.showUpload=true;
+    		$scope.showText=false;
+    	}else{
+    		$scope.showUpload=false;
+			$scope.showText=true;
+    	}
+    }
+    
+    $scope.addImage = function() {
+    	alert(document.getElementById("file").value);
+	    $scope.topic.content=document.getElementById("file").value;
+	}
+
 
         $scope.addTopic = function(){
-
+			$scope.topic.type=$scope.selectedTopicType;
             TopicService.addTopic(
                 $scope.topic,
                 function(res){

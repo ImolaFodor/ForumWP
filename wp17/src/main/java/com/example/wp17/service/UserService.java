@@ -5,6 +5,7 @@ import com.example.wp17.model.User;
 
 import org.springframework.stereotype.Service;
 
+import java.awt.List;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -55,6 +56,31 @@ public class UserService {
             in.close();
             fileIn.close();
             return users;
+        }catch(Exception i) {
+            i.printStackTrace();
+            return new ArrayList<User>();
+        }
+    }
+    
+    public ArrayList<User> getModerators(){
+
+        ArrayList<User> users = null;
+        ArrayList<User> moderators = new ArrayList();
+        try {
+            FileInputStream fileIn = new FileInputStream("users.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            users = (ArrayList<User>) in.readObject();
+            
+            for(User u : users){
+            	String moderator="MODERATOR";
+            	if(u.getRole().equals(moderator)){
+            		moderators.add(u);
+            	}
+            }
+            
+            in.close();
+            fileIn.close();
+            return moderators;
         }catch(Exception i) {
             i.printStackTrace();
             return new ArrayList<User>();

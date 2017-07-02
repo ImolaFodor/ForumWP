@@ -17,6 +17,7 @@
         $scope.showOkButton=false;
         $scope.showEditContent=false;
         $scope.showContent=true;
+        $scope.showImageContent=false;
         $scope.showEditTopicButton=true;
         $scope.showConfirmEditButton=false;
 
@@ -27,6 +28,15 @@
                  }else{*/
                 console.log(response.data);
                 $scope.topicdetail=response.data;
+                
+                if($scope.topicdetail.type=="IMAGE"){
+                	$scope.showContent=false;
+                	$scope.showImageContent=true;
+                	var str1 = "file:///";
+					var str2 = $scope.topicdetail.content;
+					$scope.img_source = str1.concat(str2);
+                	}
+                
                 //}
             }/*,
              function(response){

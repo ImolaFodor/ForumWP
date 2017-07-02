@@ -30,6 +30,13 @@ public class UserController {
         ArrayList<User> users= userService.readUsers();
         return new ResponseEntity(users, HttpStatus.OK);
     }
+    
+    @RequestMapping(
+            method = RequestMethod.GET, value="/mods")
+    public ResponseEntity getModerators() {
+        ArrayList<User> moderators= userService.getModerators();
+        return new ResponseEntity(moderators, HttpStatus.OK);
+    }
 
     @RequestMapping(
             method = RequestMethod.POST)

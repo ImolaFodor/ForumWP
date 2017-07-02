@@ -2,12 +2,14 @@ package com.example.wp17.service;
 
 import com.example.wp17.model.SubForum;
 import com.example.wp17.model.Topic;
+
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 
 /**
@@ -115,8 +117,24 @@ public class TopicService {
         Topic topic= new Topic();
 
         System.out.println("Tema treba da se napravi za podforum " + t.getSubForum());
-
-        topic.setContent(t.getContent());
+        topic.setType(t.getType());
+        System.out.println("Tip topica: " + t.getType());
+        
+        System.out.println("URL slike " + t.getContent());
+        
+        String imageStr="IMAGE";
+        
+        if(t.getType().equals(imageStr)){
+        	String onlyName= t.getContent().substring(12);
+        	String onlyPath= "C://Users//Imola//Documents//faks//3.godina//IMOLA//WP17//ForumWP//wp17//images//";
+        	String imgURL= onlyPath.concat(onlyName);
+        	System.out.println(imgURL);
+        }else{
+        	topic.setContent(t.getContent());
+        }
+        
+        
+        
         topic.setAuthor("ulogovaniautor");
         Date date=new Date();
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");

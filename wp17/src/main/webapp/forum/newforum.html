@@ -10,15 +10,15 @@
 <div class="col-md-4 col-md-offset-4">
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">Odgovorni moderator</span>
-        <input type="text" class="form-control" placeholder="logged user" ng-model="subforum.responsibleModerator" ng-disabled="true">
+        <input type="text" class="form-control" ng-model="subforum.responsibleModerator" ng-disabled="true">
 
     </div>
-    <!--<br>
+    <br>
     <div class="input-group">
         <span  class="input-group-addon" id="basic-addon4">Moderatori</span>
         <div class="form-group">
-            <select class="form-control" ng-model="selectedTopicType" ng-options="tt for tt in topicTypes"></select></div>
-    </div>-->
+            <select class="form-control" ng-model="selectedModerator" ng-options="m.username for m in moderators"></select></div>
+    </div>
     <br>
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon2">Naslov</span>
