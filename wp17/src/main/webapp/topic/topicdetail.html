@@ -126,6 +126,10 @@
         <button class="btn btn-primary glyphicon glyphicon-save" type="button" ng-click="saveTopic()">
             Snimi
         </button>
+        <button class="btn btn-primary glyphicon glyphicon-flash" type="button" ng-click="complainOnTopic()">
+            Zalba
+        </button>
+        
     </div>
 <h1 style="padding: 10px">{{topicdetail.name}}</h1>
 <br>
@@ -171,7 +175,7 @@
                         <span class="like"><i class="glyphicon glyphicon-thumbs-down"></i></span>
                     </button>
                         <span class="date sub-text">{{comment.date}}</span> <span class="date sub-text">{{comment.author.username}}</span>
-                        <button class="social-like glyphicon glyphicon-trash" style="float: right" ng-click="deleteComment(comment.id)"> </button><button class="social-like glyphicon glyphicon-pencil" style="float: right" ng-click="editComment(comment.id)"> </button>
+                        <button class="social-like glyphicon glyphicon-save" style="float: right" ng-click="saveComment(comment.id)"> </button><button class="social-like glyphicon glyphicon-trash" style="float: right" ng-click="deleteComment(comment.id)"> </button><button class="social-like glyphicon glyphicon-pencil" style="float: right" ng-click="editComment(comment.id)"> </button>
                     </p>
                 </div>
             </li>

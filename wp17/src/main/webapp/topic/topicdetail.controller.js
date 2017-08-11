@@ -9,9 +9,9 @@
         .module('angular')
         .controller('TopicDetailController', TopicDetailController);
 
-    TopicDetailController.$inject = ['$window','$location','$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService','CommentService'];
+    TopicDetailController.$inject = ['$window','$location','$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService','CommentService','ComplaintService','ngDialog'];
 
-    function TopicDetailController($window, $location, $scope, $state, AuthService, $rootScope, $stateParams, TopicService, CommentService) {
+    function TopicDetailController($window, $location, $scope, $state, AuthService, $rootScope, $stateParams, TopicService, CommentService,ComplaintService,ngDialog) {
 
         $scope.isDisabled=true;
         $scope.showOkButton=false;
@@ -35,8 +35,9 @@
         				$scope.disableTopicDislike=false;
         				$scope.disableCommentLike=false;
         				$scope.disableCommentDislike=false;
+        				$scope.showAddComment=true;
                     }else{
-                    	$scope.showAddComment=true;
+                    	
         				$scope.disableTopicLike=true;
         				$scope.disableTopicDislike=true;
         				$scope.disableCommentLike=true;
@@ -291,6 +292,27 @@
             //$window.location.reload();
 
         }
+        
+        $scope.saveComment= function(id) {
+			
+			var obj={topic: $stateParams.name,id: id};
+			
+            CommentService.saveComment(obj,
+             function(response){
+             /*if(!response.data.success){
+             $state.go('home');
+             }else{*/
+             //console.log(response.data);
+             //}
+
+                 console.log(response.data);
+                 $scope.comment=response.data;
+             }/*,
+             function(response){
+             $state.go('home');
+             }*/);
+             $window.location.reload();
+        }
 
         $scope.deleteComment= function(id) {
             var obj={topic: $stateParams.name,id: id};
@@ -408,7 +430,54 @@
             $location.path("/topic"+$stateParams.subforum + "/" + $stateParams.name)
         }
 
+	$scope.complainOnTopic= function() {
 
+            $scope.complaint={};
+            $scope.complaint.name= $stateParams.name;
+            $scope.complaint.subforum=$stateParams.subforum;
+            $scope.complaint.type= "topic";
+            
+            //$scope.complaint.complainer= "ulogovanikorisnik";
+            $scope.complaint.id= 1;
+
+            ngDialog.open({
+                template: 'complaint/complaint.html',
+                scope: $scope,
+                controller: ['$scope', 'AuthService', function($scope, $AuthService) {
+                 $scope.confirmSendComplaint= function(content){
+                     $scope.$parent.complaint.content=content;
+                     
+                     AuthService.getLoggedUser(
+            				function(response){
+                    			console.log(response.data);
+                    			$scope.logged=response.data;
+           					});
+                     
+                     $scope.$parent.complaint.complainer= $scope.logged.username;
+                     
+
+                     ComplaintService.addComplaint($scope.$parent.complaint,
+                function(response){
+                    /*if(!response.data.success){
+                     $state.go('home');
+                     }else{*/
+                    //console.log(response.data);
+                    //}
+
+                    alert("Ulozena zalba!");
+                }/*,
+                 function(response){
+                 $state.go('home');
+                 }*/);
+            $window.location.reload();
+        }
+            }]
+            });
+
+
+
+            //$window.location.reload();
+        }
 
 
 

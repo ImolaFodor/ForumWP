@@ -48,6 +48,8 @@
 		
 		
         $scope.addSubForum = function(){
+        
+        $scope.subforum.responsibleModerator=$scope.selectedModerator.username;
 
             ForumService.addSubForum(
                 $scope.subforum,

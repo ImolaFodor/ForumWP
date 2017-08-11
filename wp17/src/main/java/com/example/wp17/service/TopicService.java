@@ -66,6 +66,7 @@ public class TopicService {
             return new ArrayList<Topic>();
         }
     }
+    
 
     public Topic readTopic(String name){
 
@@ -143,7 +144,7 @@ public class TopicService {
         
         
         
-        topic.setAuthor("ulogovaniautor");
+        topic.setAuthor(userService.getLoggedUser().getUsername());
         Date date=new Date();
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         String s = formatter.format(date);
@@ -203,13 +204,13 @@ public class TopicService {
     
     public Topic saveTopic(Topic t){
         Topic topic= readTopic(t.getName());
-        List<String> savedTopics = new ArrayList();
         User logged = userService.getLoggedUser();
         System.out.println("Iz loggeduser fajla" + logged.getUsername());
         ArrayList<User> users= userService.readUsers();
         
         for(User user : users){
             if(user.getUsername().equals(logged.getUsername())){
+            	List<String> savedTopics = user.getSavedTopics();
             	foundUser= user;
             	users.remove(user);
             	savedTopics.add(t.getName());
@@ -224,7 +225,7 @@ public class TopicService {
         
         System.out.println("Tema koja se cuva " + t.getName());
 
-        ArrayList<Topic> topics= readTopics(t.getSubForum());
+        /*ArrayList<Topic> topics= readTopics(t.getSubForum());
 
         for(Topic ts : topics){
             if(ts.getName().equals(t.getName())){
@@ -234,7 +235,8 @@ public class TopicService {
         }
 
         topics.add(topic);
-        writeTopics(topics);
+        writeTopics(topics);*/ //cemu ovo
+        
 
         return topic;
 

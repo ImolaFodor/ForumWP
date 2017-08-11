@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
 import java.text.Format;
@@ -23,20 +25,25 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @SpringBootApplication
-public class Wp17Application {
+public class Wp17Application{
+	
+	/*@Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Wp17Application.class);
+    }*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(Wp17Application.class, args);
 		System.out.println("APP STARTED");
 	}
 
-	@Bean
+	/*@Bean
 	CommandLineRunner init(final ComplaintService complaintService) {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... strings) throws Exception {
 
-				/*System.out.println("READING USERS FILE");
+				System.out.println("READING USERS FILE");
 				ArrayList<SubForum> subForums = subForumService.readSubForums();
 				SubForum sf = new SubForum();
 				sf.setName("IMOLA RET");
@@ -45,9 +52,9 @@ public class Wp17Application {
 				subForumService.writeSubForums(subForums);
 				subForums = subForumService.readSubForums();
 				System.out.println("SFS FROM FILE");
-				System.out.println(subForums);*/
+				System.out.println(subForums);
 
-				/*System.out.println("READING USERS FILE");
+				System.out.println("READING USERS FILE");
 				ArrayList<User> users = userService.readUsers();
 				User u = new User();
 				u.setUsername("IMOLA");
@@ -56,9 +63,9 @@ public class Wp17Application {
 				userService.writeUsers(users);
 				users = userService.readUsers();
 				System.out.println("SFS FROM FILE");
-				System.out.println(users);*/
+				System.out.println(users);
 
-				/*System.out.println("READING COMMENTS FILE");
+				System.out.println("READING COMMENTS FILE");
 				ArrayList<Comment> comments = commentService.readComments("IMOLA topic");
 				Comment c = new Comment();
 				c.setTopic("IMOLA topic");
@@ -75,9 +82,9 @@ public class Wp17Application {
 				commentService.writeComments(comments);
 				comments = commentService.readComments("IMOLA TOPIC");
 				System.out.println("SFS FROM FILE");
-				System.out.println(comments);*/
+				System.out.println(comments);
 
-				/*System.out.println("READING TOPICS FILE");
+				System.out.println("READING TOPICS FILE");
 				ArrayList<Topic> topics = topicService.readTopics("IMOLA RET");
 				Topic t = new Topic();
 				t.setName("IMOLA topic");
@@ -90,9 +97,9 @@ public class Wp17Application {
 				topicService.writeTopics(topics);
 				topics = topicService.readTopics("IMOLA RET");
 				//System.out.println("SFS FROM FILE");
-				System.out.println(topics);*/
+				System.out.println(topics);
 				
-				/*System.out.println("READING COMPLAINTS FILE");
+				System.out.println("READING COMPLAINTS FILE");
 				ArrayList<Complaint> topics = complaintService.readComplaints();
 				Complaint t = new Complaint();
 				t.setName("IMOLA topic");
@@ -105,10 +112,10 @@ public class Wp17Application {
 				topicService.writeTopics(topics);
 				topics = topicService.readTopics("IMOLA RET");
 				//System.out.println("SFS FROM FILE");
-				System.out.println(topics);*/
+				System.out.println(topics);
 			}
 		};
-	}
+	}*/
 
 
 }

@@ -10,8 +10,10 @@ public class Complaint implements Serializable {
     private String date;
     private String author; //user koji je kreirao entitet
     private String content;
-    private String name; //entiteta
-    private int id; //komentara
+    private String name;//entiteta
+    private String subforum;
+    private long id; //komentara
+    private String type;
 
     public Complaint(String complainer, String date, String author, String content, String name, int id) {
         this.complainer = complainer;
@@ -28,6 +30,36 @@ public class Complaint implements Serializable {
 	public Complaint() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
+
+	public String getSubforum() {
+		return subforum;
+	}
+
+
+
+
+	public void setSubforum(String subforum) {
+		this.subforum = subforum;
+	}
+
+
+
+
+	public String getType() {
+		return type;
+	}
+
+
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
 
 
 	public String getComplainer() {
@@ -70,11 +102,11 @@ public class Complaint implements Serializable {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 }

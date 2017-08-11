@@ -46,6 +46,17 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            saveComment: function(obj, onSuccess, onError){
+                var req = {
+                    method: 'PUT',
+                    url: '/api/comments/save',
+                    data: obj,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             deleteComment: function(obj, onSuccess, onError){
                 var req = {
                     method: 'DELETE',

@@ -9,9 +9,9 @@
         .module('angular')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope','$window','$location', '$state', 'ForumService','ComplaintService','AuthService'];
+    HomeController.$inject = ['$scope','$window','$location', '$state', 'ForumService','ComplaintService','AuthService','ngDialog'];
 
-    function HomeController ($scope,$window, $location, $state, ForumService,ComplaintService, AuthService) {
+    function HomeController ($scope,$window, $location, $state, ForumService,ComplaintService, AuthService,ngDialog) {
         $scope.query = {}
         $scope.queryBy = '$'
         
@@ -89,14 +89,28 @@
         $scope.complainOnSubForum= function(name, content) {
 
             $scope.complaint={};
-            $scope.complaint.name= name;
-            $scope.complaint.complainer= "ulogovanikorisnik";
-            $scope.complaint.content= content;
-            $scope.complaint.id= 1;
+            $scope.complaint.subforum= name;
+            $scope.complaint.type= "subforum";
+            
+            //$scope.complaint.complainer= "ulogovanikorisnik";
 
+            ngDialog.open({
+                template: 'complaint/complaint.html',
+                scope: $scope,
+                controller: ['$scope', 'AuthService', function($scope, $AuthService) {
+                 $scope.confirmSendComplaint= function(content){
+                     $scope.$parent.complaint.content=content;
+                     
+                     AuthService.getLoggedUser(
+            				function(response){
+                    			console.log(response.data);
+                    			$scope.logged=response.data;
+           					});
+                     
+                     $scope.$parent.complaint.complainer= $scope.logged.username;
+                     
 
-
-            ComplaintService.addComplaint($scope.complaint,
+                     ComplaintService.addComplaint($scope.$parent.complaint,
                 function(response){
                     /*if(!response.data.success){
                      $state.go('home');
@@ -104,13 +118,24 @@
                     //console.log(response.data);
                     //}
 
-                    alert("Izbrisan podforum!");
+                    alert("Ulozena zalba!");
                 }/*,
                  function(response){
                  $state.go('home');
                  }*/);
             $window.location.reload();
         }
+            }]
+            });
+
+
+
+            //$window.location.reload();
+        }
+
+
+
+            
 
 		$scope.followSubForum= function(name) {
 
