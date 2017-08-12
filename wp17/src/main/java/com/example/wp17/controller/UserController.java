@@ -1,10 +1,13 @@
 package com.example.wp17.controller;
 
+import com.example.wp17.model.Topic;
 import com.example.wp17.model.User;
 import com.example.wp17.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -78,5 +81,15 @@ public class UserController {
     public ResponseEntity<User> getLogged() {
         User u= userService.getLoggedUser();
         return new ResponseEntity<>(u, HttpStatus.OK);
+    }
+    
+    @RequestMapping(
+            method = RequestMethod.PUT,value = "/{username}/{role}")
+    public ResponseEntity changeType(@PathVariable("username") String username,@PathVariable("role") String role) {
+        
+        userService.changeType(username,role);
+        
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

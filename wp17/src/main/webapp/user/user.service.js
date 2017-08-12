@@ -33,6 +33,16 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            changeType: function(username, role, onSuccess, onError){
+                var req = {
+                    method: 'PUT',
+                    url: '/api/users/'+username+'/'+role,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             me: function(onSuccess, onError){
                 var req = {
                     method: 'GET',

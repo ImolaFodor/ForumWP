@@ -24,7 +24,7 @@
             <th>E-MAIL</th>
             <th>DATUM REGISTRACIJE</th>
 
-            <th></th>
+            <th>PROMENI TIP</th>
             <th></th>
         </tr>
         </thead>
@@ -38,11 +38,15 @@
             <td>{{user.email}}</td>
             <td>{{user.registrationDate}}</td>
             <td>
-                <button type="submit"
-                        ui-sref="topicdetail({subforum:topic.subForum,name:topic.name})"
+                <!-- <button ng-show="showChangeType" type="submit"
+                        ng-click="changeType()"
                         class="btn btn-info btn-sm">
                     <span class="glyphicon glyphicon-blackboard"></span>&nbsp;<span>PROMENI TIP</span>
-                </button>
+                </button> -->
+                <div class="input-group">
+    <div class="form-group">
+        <select class="form-control" ng-change="changeType(user.username,selectedRole)" ng-model="selectedRole" ng-options="r for r in roles"></select></div>
+</div>
             </td>
             <td>
                 <button type="submit"

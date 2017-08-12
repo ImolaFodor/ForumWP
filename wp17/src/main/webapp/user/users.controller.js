@@ -20,6 +20,9 @@
         $scope.message.subject=" ";
         $scope.message.content=" ";
         $scope.showComplaintButtons=false;
+        $scope.showChangeType=false;
+        
+        $scope.roles=["KORISNIK", "MODERATOR", "ADMIN"];
         
        AuthService.getLoggedUser(
             	function(response){
@@ -29,6 +32,10 @@
         			}else{
         				$scope.showComplaintButtons=true;
         			}
+        			
+        			if($scope.logged.role=="ADMIN"){
+                    	$scope.showChangeType=true;
+                    }
             		
                     console.log(response.data);
                     $scope.logged=response.data;
@@ -146,6 +153,16 @@
 
 
             //$window.location.reload();
+        }
+        
+        $scope.changeType= function(username,role){
+        	UserService.changeType(username,role,
+            function(response){
+                alert("Promenjen tip")
+            }/*,
+             function(response){
+             $state.go('home');
+             }*/);
         }
 	
 		

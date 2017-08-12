@@ -148,8 +148,24 @@ public class UserService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    
+    public void changeType(String username, String role){
+    	System.out.println("Nova uloga"+role);
+    	ArrayList<User> users = readUsers();
+    	User modifiedUser= new User();
+    	for(User u : users){
+    		if(u.getUsername().equals(username)){
+    			u.setRole(role);
+    			modifiedUser=u;
+    			users.remove(u);
+    			break;
+    		}
+    	}
     	
-
+    	users.add(modifiedUser);
+    	writeUsers(users);
+    	
     }
 
 
