@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class Message implements Serializable {
 	private long id;
+	private long complaintId;
     private String sender; //kojoj pripada
     private String recipient;
     private String subject;
@@ -32,6 +33,17 @@ public class Message implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+
+	public long getComplaintId() {
+		return complaintId;
+	}
+
+
+
+	public void setComplaintId(long complaintId) {
+		this.complaintId = complaintId;
 	}
 
 

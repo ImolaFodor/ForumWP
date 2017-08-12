@@ -9,17 +9,18 @@
         .module('angular')
         .controller('TopicDetailController', TopicDetailController);
 
-    TopicDetailController.$inject = ['$window','$location','$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService','CommentService','ComplaintService','ngDialog'];
+    TopicDetailController.$inject = ['$window','$location','$scope', '$state', 'AuthService', '$rootScope', '$stateParams', 'TopicService','ForumService','CommentService','ComplaintService','ngDialog'];
 
-    function TopicDetailController($window, $location, $scope, $state, AuthService, $rootScope, $stateParams, TopicService, CommentService,ComplaintService,ngDialog) {
+    function TopicDetailController($window, $location, $scope, $state, AuthService, $rootScope, $stateParams, TopicService, ForumService, CommentService,ComplaintService,ngDialog) {
 
         $scope.isDisabled=true;
         $scope.showOkButton=false;
         $scope.showEditContent=false;
         $scope.showContent=true;
         $scope.showImageContent=false;
-        $scope.showEditTopicButton=true;
         $scope.showConfirmEditButton=false;
+        
+        
         
         
         AuthService.getLoggedUser(
@@ -43,6 +44,28 @@
         				$scope.disableCommentLike=true;
         				$scope.disableCommentDislike=true;
                     }
+                    
+                    ForumService.getSubForums(
+            function(response){
+                /*if(!response.data.success){
+                    $state.go('home');
+                }else{*/
+                    console.log(response.data);
+                    $scope.subforums=response.data;
+                    for(var i=0; i<$scope.subforums.length;i++){
+                    	if($scope.subforums[i].name==$stateParams.subforum){
+                    		if($scope.subforums[i].responsibleModerator==$scope.logged.username || $scope.logged.role=="ADMIN"){
+                    			$scope.showDeleteTopicButton=true;
+                    			$scope.showEditTopicButton=true;
+                    		}
+                    	}
+                    }
+                //}
+            }/*,
+            function(response){
+                $state.go('home');
+            }*/);
+                    
                      
                 //}
             }/*,

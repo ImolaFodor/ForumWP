@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Imola on 6/30/2017.
@@ -34,6 +35,10 @@ public class ComplaintService {
 	
 	@Autowired
 	UserService userService;
+	
+	String subforumS="subforum";
+    String topicS="topic";
+    String commentS="comment";
 	
     public void writeComplaints(ArrayList<Complaint> complaints){
 
@@ -73,11 +78,11 @@ public class ComplaintService {
         /*complaint.setRecipient("Recipient");
         complaint.setSender("Sender");*/
         
-        String subforumS="subforum";
-        String topicS="topic";
-        String commentS="comment";
+        long dateId= new Date().getTime();
+        complaint.setId(dateId);
+        
+        
         if(complaint.getType().equals(subforumS)){
-        	System.out.println("zalba je na "+complaint.getType());
         	
         	ArrayList<SubForum> subForums= subForumService.readSubForums();
         	
@@ -90,14 +95,13 @@ public class ComplaintService {
         	ArrayList<User> users= userService.readUsers();
         	for(User u : users){
         		String admin="ADMIN";
-        		System.out.println("uloga korisnika"+u.getRole());
         		if(u.getRole().equals(admin)){
-        			System.out.println("adminu se salje poruka");
         			Message m=new Message();
             		m.setRecipient(u.getUsername());
             		m.setRead(false);
             		m.setSender(complaint.getComplainer());
             		m.setContent(complaint.getContent());
+            		m.setComplaintId(complaint.getId());
             		
             		messageService.addMessage(m);
         		}
@@ -106,7 +110,6 @@ public class ComplaintService {
             }
         }else if(complaint.getType().equals(topicS)){
         	Topic topic= topicService.readTopic(complaint.getName());
-        	System.out.println("zalba je na topic iz podforuma "+complaint.getSubforum());
         	ArrayList<SubForum> subForums= subForumService.readSubForums();
         	for(SubForum sf : subForums){
         		
@@ -116,6 +119,8 @@ public class ComplaintService {
             		m.setRead(false);
             		m.setSender(complaint.getComplainer());
             		m.setContent(complaint.getContent());
+            		m.setComplaintId(complaint.getId());
+            		m.setSubject("Zalba");
             		
             		messageService.addMessage(m);
             	}
@@ -130,6 +135,8 @@ public class ComplaintService {
             		m.setRead(false);
             		m.setSender(complaint.getComplainer());
             		m.setContent(complaint.getContent());
+            		m.setComplaintId(complaint.getId());
+            		m.setSubject("Zalba");
             		
             		messageService.addMessage(m);
         		}
@@ -137,7 +144,6 @@ public class ComplaintService {
         	
         	complaint.setAuthor(topic.getAuthor());
         }else if(complaint.getType().equals(commentS)){
-        	System.out.println("zalba je na "+complaint.getType());
         	ArrayList<Comment> comments= commentService.readComments(complaint.getName());
         	for(Comment c : comments){
             	if(c.getId()==complaint.getId()){
@@ -154,6 +160,8 @@ public class ComplaintService {
             		m.setRead(false);
             		m.setSender(complaint.getComplainer());
             		m.setContent(complaint.getContent());
+            		m.setComplaintId(complaint.getId());
+            		m.setSubject("Zalba");
             		
             		messageService.addMessage(m);
             	}
@@ -162,14 +170,13 @@ public class ComplaintService {
         	ArrayList<User> users= userService.readUsers();
         	for(User u : users){
         		String admin="ADMIN";
-        		System.out.println("uloga korisnika"+u.getRole());
         		if(u.getRole().equals(admin)){
-        			System.out.println("adminu se salje poruka");
         			Message m=new Message();
             		m.setRecipient(u.getUsername());
             		m.setRead(false);
             		m.setSender(complaint.getComplainer());
             		m.setContent(complaint.getContent());
+            		m.setComplaintId(complaint.getId());
             		
             		messageService.addMessage(m);
         		}
@@ -180,5 +187,149 @@ public class ComplaintService {
         complaints.add(complaint);
         writeComplaints(complaints);
     }
+    
+    public void deleteComplaint(long cId){
 
+        ArrayList<Complaint> complaints= readComplaints();
+
+        for(Complaint c : complaints){
+            if(c.getId()==cId){
+                complaints.remove(c);
+                
+                Message m= new Message();
+                m.setRecipient(c.getComplainer());
+                m.setSender(userService.getLoggedUser().getUsername());
+                m.setContent("Zalba Vam se ne uvazava!");
+                m.setRead(false);
+                m.setSubject("Tretman zalbe");
+                
+                messageService.addMessage(m);
+                
+                break;
+            }
+        }
+        
+        writeComplaints(complaints);
+    }
+    
+    public void deleteEntity(long cId){
+
+        ArrayList<Complaint> complaints= readComplaints();
+
+        for(Complaint c : complaints){
+            if(c.getId()==cId){
+                complaints.remove(c);
+                
+                
+                
+                if(c.getType().equals(topicS)){
+                	Topic t= topicService.readTopic(c.getName());                
+                    topicService.deleteTopic(t);
+                    
+                    Message m= new Message();
+                    m.setRecipient(c.getAuthor());
+                    m.setSender(userService.getLoggedUser().getUsername());
+                    String content="Brise Vam se tema "+ c.getName()+ "!";
+                    m.setContent(content);
+                    m.setRead(false);
+                    m.setSubject("Tretman zalbe");
+                    
+                    messageService.addMessage(m);
+                    
+                }else{
+                	ArrayList<SubForum> subForums= subForumService.readSubForums();
+                	for(SubForum sf : subForums){
+                		
+                    	if(sf.getName().equals(c.getSubforum())){
+                    		subForumService.deleteSubForum(c.getName());
+                    	}
+                    }
+                	
+                	Message m= new Message();
+                    m.setRecipient(c.getAuthor());
+                    m.setSender(userService.getLoggedUser().getUsername());
+                    String content="Brise Vam se podforum "+ c.getName()+ "!";
+                    m.setContent(content);
+                    m.setRead(false);
+                    m.setSubject("Tretman zalbe");
+                    
+                    messageService.addMessage(m);
+                	
+                }
+                
+                
+                
+                
+                
+                
+                break;
+            }
+        }
+        
+        writeComplaints(complaints);
+    }
+    
+    public void warnAuthor(long cId){
+
+        ArrayList<Complaint> complaints= readComplaints();
+
+        for(Complaint c : complaints){
+            if(c.getId()==cId){
+                complaints.remove(c);
+                
+                Message m= new Message();
+                m.setRecipient(c.getComplainer());
+                m.setSender(userService.getLoggedUser().getUsername());
+                String content="Vasa zalba na "+ c.getName()+ " nije uvazena!";
+                m.setContent(content);
+                m.setRead(false);
+                m.setSubject("Tretman zalbe");
+                
+                messageService.addMessage(m);
+                
+                if(c.getType().equals(topicS)){
+                    
+                    Message mt= new Message();
+                    mt.setRecipient(c.getAuthor());
+                    mt.setSender(userService.getLoggedUser().getUsername());
+                    String contentT="Primili smo zalbu na Vasu temu "+ c.getName()+ "!";
+                    mt.setContent(contentT);
+                    mt.setRead(false);
+                    mt.setSubject("Tretman zalbe");
+                    
+                    messageService.addMessage(mt);
+                    
+                }else{
+                	ArrayList<SubForum> subForums= subForumService.readSubForums();
+                	for(SubForum sf : subForums){
+                		
+                    	if(sf.getName().equals(c.getSubforum())){
+                    		subForumService.deleteSubForum(c.getName());
+                    	}
+                    }
+                	
+                	Message mSF= new Message();
+                    mSF.setRecipient(c.getAuthor());
+                    mSF.setSender(userService.getLoggedUser().getUsername());
+                    String contentSF="Primili smo zalbu na Vas podforum "+ c.getName()+ "!";
+                    mSF.setContent(contentSF);
+                    mSF.setRead(false);
+                    mSF.setSubject("Tretman zalbe");
+                    
+                    messageService.addMessage(mSF);
+                	
+                }
+                
+                
+                
+                
+                
+                
+                break;
+            }
+        }
+        
+        writeComplaints(complaints);
+    }
+    
 }

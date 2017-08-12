@@ -34,6 +34,36 @@
                 }
                 $http(req).then(onSuccess, onError);
             },
+            deleteComplaint: function(cId, onSuccess, onError){
+                var req = {
+                    method: 'DELETE',
+                    url: '/api/complaint/'+cId,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
+            deleteEntity: function(cId, onSuccess, onError){
+                var req = {
+                    method: 'DELETE',
+                    url: '/api/complaint/entity/'+cId,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
+            warnAuthor: function(cId, onSuccess, onError){
+                var req = {
+                    method: 'POST',
+                    url: '/api/complaint/warning/'+cId,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+                $http(req).then(onSuccess, onError);
+            },
             me: function(onSuccess, onError){
                 var req = {
                     method: 'GET',

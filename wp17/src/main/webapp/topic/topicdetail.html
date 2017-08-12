@@ -120,7 +120,7 @@
             Izmeni
         </button>
         <button ng-show="showConfirmEditButton" class="btn btn-primary glyphicon glyphicon-ok" style="float: right" ng-click="confirmEditTopic()" ng-show="showOkButton"> </button>
-        <button class="btn btn-primary glyphicon glyphicon-trash" type="button" ng-click="deleteTopic()">
+        <button ng-show="showDeleteTopicButton" class="btn btn-primary glyphicon glyphicon-trash" type="button" ng-click="deleteTopic()">
             Brisi
         </button>
         <button class="btn btn-primary glyphicon glyphicon-save" type="button" ng-click="saveTopic()">

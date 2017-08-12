@@ -12,21 +12,26 @@
         .module('angular')
         .controller('UserController', UserController);
 
-    UserController.$inject = ['$scope','$window','$location', '$state', 'UserService','MessageService','AuthService', 'ngDialog'];
+    UserController.$inject = ['$scope','$window','$location', '$state', 'UserService','MessageService','AuthService','ComplaintService', 'ngDialog'];
 		
-    function UserController ($scope,$window, $location, $state, UserService, MessageService, AuthService, ngDialog) {
+    function UserController ($scope,$window, $location, $state, UserService, MessageService, AuthService, ComplaintService, ngDialog) {
         $scope.value = true;
         $scope.message={};
         $scope.message.subject=" ";
         $scope.message.content=" ";
-        
+        $scope.showComplaintButtons=false;
         
        AuthService.getLoggedUser(
             	function(response){
+            		$scope.logged=response.data;
+            		if($scope.logged.role=="KORISNIK"){
+        				$scope.showComplaintButtons=false;
+        			}else{
+        				$scope.showComplaintButtons=true;
+        			}
+            		
                     console.log(response.data);
                     $scope.logged=response.data;
-                    console.log($scope.logged.savedTopics);
-                    console.log($scope.logged.followedSubForums);
                     $scope.savedTopics=$scope.logged.savedTopics;
                     $scope.followedSubForums=$scope.logged.followedSubForums;
                     
@@ -142,7 +147,38 @@
 
             //$window.location.reload();
         }
-
+	
+		
+		$scope.deleteEntity= function(cId){
+			ComplaintService.deleteEntity(cId,
+            function(response){
+                alert("Podforum/tema je izbrisan/a")
+            }/*,
+             function(response){
+             $state.go('home');
+             }*/);
+		}
+		
+		$scope.warnAuthor= function(cId){
+			ComplaintService.warnAuthor(cId,
+            function(response){
+                alert("Upozoreno!");
+            }/*,
+             function(response){
+             $state.go('home');
+             }*/);
+		}
+		
+		$scope.deleteComplaint= function(cId){
+			ComplaintService.deleteComplaint(cId,
+            function(response){
+                alert("Zalba je izbrisana!");
+            }/*,
+             function(response){
+             $state.go('home');
+             }*/);
+		}
+		
 
 }
     

@@ -60,6 +60,7 @@
                         </button>
 
                     </td>
+                    
                     <td>
                         <button type="submit"
                                 ui-sref="newtopic({name:subforum.name})"
@@ -78,8 +79,8 @@
                             <span class="glyphicon glyphicon-flash"></span>&nbsp;<span>ŽALBA</span>
                         </button>
                     </td>
-                    <td>
-                        <button type="submit" class="btn btn-info btn-sm" type="button" ng-click="followSubForum(subforum.name)">
+                    <td ng-show="showSFOptions">
+                        <button  type="submit" class="btn btn-info btn-sm" type="button" ng-click="followSubForum(subforum.name)">
                             <span class="glyphicon glyphicon-star"></span>&nbsp;<span></span>
                         </button>
                     </td>
@@ -110,7 +111,7 @@
                         </button>
 
                     </td>
-                    <td>
+                    <td ng-show="showSFOptions">
                         <button type="submit"
                                 ui-sref="newtopic({name:subforum.name})"
                                 class="btn btn-info btn-sm">
@@ -118,17 +119,17 @@
                         </button>
 
                     </td>
-                    <td>
+                    <td ng-show="showSFOptionDelete">
                         <button type="submit" class="btn btn-info btn-sm" type="button" ng-click="deleteSubForum(subforum.name)">
                             <span class="glyphicon glyphicon-trash"></span>&nbsp;<span>BRISI PODFORUM</span>
                         </button>
                     </td>
-                    <td>
+                    <td ng-show="showSFOptions">
                         <button type="submit" class="btn btn-info btn-sm" type="button" ng-click="complainOnSubForum(subforum.name,subforum.description)">
                             <span class="glyphicon glyphicon-flash"></span>&nbsp;<span>ŽALBA</span>
                         </button>
                     </td>
-                    <td>
+                    <td ng-show="showSFOptions">
                         <button type="submit" class="btn btn-info btn-sm" type="button" ng-click="followSubForum(subforum.name)">
                             <span class="glyphicon glyphicon-star"></span>&nbsp;<span></span>
                         </button>
@@ -138,7 +139,7 @@
             </table>
         </div>
 
-        <div style="float:left">
+        <div ng-show="showAddSubForum" style="float:left">
             <button type="submit" ui-sref="newsubforum()" class="btn btn-info btn-sm" type="button">
                 <span class="glyphicon glyphicon-plus"></span>&nbsp;<span>DODAJ PODFORUM</span>
             </button></div>

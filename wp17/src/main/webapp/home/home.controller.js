@@ -14,7 +14,9 @@
     function HomeController ($scope,$window, $location, $state, ForumService,ComplaintService, AuthService,ngDialog) {
         $scope.query = {}
         $scope.queryBy = '$'
-        
+        $scope.showSFOptions=false;
+        $scope.showSFOptionDelete=false;
+        $scope.showAddSubForum=false;
         
         AuthService.getLoggedUser(
             function(response){
@@ -37,6 +39,12 @@
                     if($scope.logged.username){
         				$scope.showFollowedSubForums=true;
         				$scope.showPleaseLogIn=false;
+        				$scope.showSFOptions=true;
+                    }
+                    
+                    if($scope.logged.role=="ADMIN"){
+                    	$scope.showAddSubForum=true;
+                    	$scope.showSFOptionDelete=true;
                     }
                      
                 //}
@@ -90,6 +98,7 @@
 
             $scope.complaint={};
             $scope.complaint.subforum= name;
+            $scope.complaint.name= name;
             $scope.complaint.type= "subforum";
             
             //$scope.complaint.complainer= "ulogovanikorisnik";

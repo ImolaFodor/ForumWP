@@ -52,6 +52,8 @@ public class MessageService {
             User logged= userService.getLoggedUser();
             
             for(Message m : messages){
+            	System.out.println("Recipient of the message"+m.getRecipient());
+            	System.out.println("Logged"+logged.getUsername());
             	if(m.getRecipient().equals(logged.getUsername())){
             		messagesByRecipient.add(m);
             	}
