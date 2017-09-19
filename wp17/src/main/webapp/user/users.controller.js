@@ -108,8 +108,8 @@
             });
         }
 
-        $scope.sendMessage= function() {
-
+        $scope.sendMessage= function(username) {
+			$scope.recipient=username;
             ngDialog.open({
                 template: 'message/newmessage.html',
                 scope: $scope,

@@ -14,7 +14,7 @@
     function SignUpController($scope, $state, AuthService, $rootScope) {
 
         $scope.user = {};
-        $scope.user.role="";
+        $scope.user.role="KORISNIK";
         $scope.user.name="";
         $scope.user.lastName="";
         $scope.user.phone="";
@@ -23,20 +23,10 @@
         $scope.roles=["KORISNIK", "MODERATOR", "ADMIN"];
 
         $scope.signup = function(){
-			$scope.user.role=$scope.selectedRole;
 			if($scope.user.password==$scope.user.rpassword && !$scope.user.username==""){
 				AuthService.signup(
                 $scope.user,
                 function(res){
-                    // AuthService.saveToStorage("token", res.data.token);
-                    // AuthService.setHeader();
-                    // AuthService.me(
-                    //     function(res){
-                    //         $rootScope.user = res.data.user;
-                    //     },
-                    //     function(res){
-                    //
-                    //     });
                     alert("Korisnik je dodat!");
                     $state.go("home");
                 },
@@ -52,7 +42,6 @@
 			}else if(!$scope.user.username){
 				alert("Morate uneti korisnicko ime!");
 			}
-            
         }
 
     }
