@@ -124,7 +124,6 @@
 
 
         $scope.add= function(){
-            alert($scope.commentcontent);
 
             var comment= {topic:$stateParams.name,
                             content:$scope.commentcontent}

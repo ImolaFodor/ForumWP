@@ -17,7 +17,7 @@
         $scope.user.username="";
         $scope.user.password="";
 
-        $scope.login = function(){
+        $scope.login = function(){        	
             AuthService.login(
                 $scope.user,
                 function(res){
@@ -30,7 +30,6 @@
                         function(res){
 
                         });*/
-                    alert("Registrovan korisnik!");
                     $state.go("home");
                 },
                 function(res){

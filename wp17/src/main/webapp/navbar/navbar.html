@@ -3,14 +3,14 @@
 
         <ul class="nav navbar-nav">
             <li><a ui-sref="home">Home</a></li>
-            <li> <a ui-sref="userprofile"> Moj profil </a> </li>
-            <li> <a ui-sref="users"> Korisnici </a> </li>
+            <li> <a ui-sref="userprofile" ng-show="showProfile"> Moj profil </a> </li>
+            <li> <a ui-sref="users" ng-show="showUsers"> Korisnici </a> </li>
             <li> <a ui-sref="complaints" ng-show="showZalbe"> Žalbe </a> </li>
         </ul>
 
 
         <ul class="nav navbar-nav navbar-right">
-            <li ng-show="$root.user===undefined"><a ui-sref="login">Login</a></li>
+            <li ng-show="showLogin"><a ui-sref="login">Login</a></li>
             <li ><a ng-click="logout()">Logout</a></li>
         </ul>
 

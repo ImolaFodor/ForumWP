@@ -14,7 +14,6 @@
     function SignUpController($scope, $state, AuthService, $rootScope) {
 
         $scope.user = {};
-        $scope.user.username="";
         $scope.user.role="";
         $scope.user.name="";
         $scope.user.lastName="";
@@ -25,8 +24,8 @@
 
         $scope.signup = function(){
 			$scope.user.role=$scope.selectedRole;
-			alert($scope.user.role);
-            AuthService.signup(
+			if($scope.user.password==$scope.user.rpassword && !$scope.user.username==""){
+				AuthService.signup(
                 $scope.user,
                 function(res){
                     // AuthService.saveToStorage("token", res.data.token);
@@ -47,6 +46,13 @@
                     }
                     console.log(res);
                 });
+			}else if($scope.user.password!=$scope.user.rpassword)
+			{
+				alert("Ne podudaraju se lozinke!");
+			}else if(!$scope.user.username){
+				alert("Morate uneti korisnicko ime!");
+			}
+            
         }
 
     }
