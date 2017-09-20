@@ -23,15 +23,6 @@
             ComplaintService.addComplaint(
                 $scope.subforum,
                 function(res){
-                    // AuthService.saveToStorage("token", res.data.token);
-                    // AuthService.setHeader();
-                    // AuthService.me(
-                    //     function(res){
-                    //         $rootScope.user = res.data.user;
-                    //     },
-                    //     function(res){
-                    //
-                    //     });
                     alert("Podforum je dodat!");
                     $location.path("home/");
                 },

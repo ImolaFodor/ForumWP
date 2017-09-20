@@ -130,15 +130,15 @@ public class ComplaintService {
         	for(User u : users){
         		String admin="ADMIN";
         		if(u.getRole().equals(admin)){
-        			Message m=new Message();
-            		m.setRecipient(u.getUsername());
-            		m.setRead(false);
-            		m.setSender(complaint.getComplainer());
-            		m.setContent(complaint.getContent());
-            		m.setComplaintId(complaint.getId());
-            		m.setSubject("Zalba");
+        			Message m2=new Message();
+            		m2.setRecipient(u.getUsername());
+            		m2.setRead(false);
+            		m2.setSender(complaint.getComplainer());
+            		m2.setContent(complaint.getContent());
+            		m2.setComplaintId(complaint.getId());
+            		m2.setSubject("Zalba");
             		
-            		messageService.addMessage(m);
+            		messageService.addMessage(m2);
         		}
         	}
         	

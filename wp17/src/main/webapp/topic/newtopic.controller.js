@@ -15,8 +15,15 @@
 	$scope.showUpload=false;
 	$scope.showText=true;
 	
+	AuthService.getLoggedUser(
+            function(response){
+                    $scope.logged=response.data;
+                    $scope.topic.author=$scope.logged.username;
+            }
+            );
+	
 	$scope.topic={};
-        $scope.topic.author="";
+        
         $scope.topic.title="";
         $scope.topic.content="";
         $scope.topic.subForum=$stateParams.name;
@@ -46,15 +53,6 @@
             TopicService.addTopic(
                 $scope.topic,
                 function(res){
-                    // AuthService.saveToStorage("token", res.data.token);
-                    // AuthService.setHeader();
-                    // AuthService.me(
-                    //     function(res){
-                    //         $rootScope.user = res.data.user;
-                    //     },
-                    //     function(res){
-                    //
-                    //     });
                     alert("Tema je dodata!");
                     $location.path("topic/"+$stateParams.name);
                 },

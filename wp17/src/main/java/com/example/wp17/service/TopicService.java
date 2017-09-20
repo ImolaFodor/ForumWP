@@ -135,9 +135,10 @@ public class TopicService {
         
         if(t.getType().equals(imageStr)){
         	String onlyName= t.getContent().substring(12);
-        	String onlyPath= "C://Users//Imola//Documents//faks//3.godina//IMOLA//WP17//ForumWP//wp17//images//";
+        	String onlyPath= "C:/Users/Imola/Documents/faks/3.godina/IMOLA/WP17/ForumWP/wp17/images/";
         	String imgURL= onlyPath.concat(onlyName);
         	System.out.println(imgURL);
+        	topic.setContent(imgURL);
         }else{
         	topic.setContent(t.getContent());
         }

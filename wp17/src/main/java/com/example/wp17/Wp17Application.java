@@ -38,12 +38,12 @@ public class Wp17Application{
 	}
 
 	/*@Bean
-	CommandLineRunner init(final ComplaintService complaintService) {
+	CommandLineRunner init(final UserService userService) {
 		return new CommandLineRunner() {
 			@Override
-			public void run(String... strings) throws Exception {
+			public void run(String... strings) throws Exception {*/
 
-				System.out.println("READING USERS FILE");
+				/*System.out.println("READING USERS FILE");
 				ArrayList<SubForum> subForums = subForumService.readSubForums();
 				SubForum sf = new SubForum();
 				sf.setName("IMOLA RET");
@@ -52,20 +52,27 @@ public class Wp17Application{
 				subForumService.writeSubForums(subForums);
 				subForums = subForumService.readSubForums();
 				System.out.println("SFS FROM FILE");
-				System.out.println(subForums);
+				System.out.println(subForums);*/
 
-				System.out.println("READING USERS FILE");
+				/*System.out.println("READING USERS FILE");
 				ArrayList<User> users = userService.readUsers();
 				User u = new User();
-				u.setUsername("IMOLA");
+				u.setUsername("Imola");
+				u.setPassword("imola");
+				u.setRole("ADMIN");
 				users.add(u);
+				User u2 = new User();
+				u2.setUsername("Andrea");
+				u2.setPassword("andrea");
+				u2.setRole("MODERATOR");
+				users.add(u2);
 				System.out.println(users);
 				userService.writeUsers(users);
 				users = userService.readUsers();
 				System.out.println("SFS FROM FILE");
-				System.out.println(users);
+				System.out.println(users);*/
 
-				System.out.println("READING COMMENTS FILE");
+				/*System.out.println("READING COMMENTS FILE");
 				ArrayList<Comment> comments = commentService.readComments("IMOLA topic");
 				Comment c = new Comment();
 				c.setTopic("IMOLA topic");
@@ -82,9 +89,9 @@ public class Wp17Application{
 				commentService.writeComments(comments);
 				comments = commentService.readComments("IMOLA TOPIC");
 				System.out.println("SFS FROM FILE");
-				System.out.println(comments);
+				System.out.println(comments);*/
 
-				System.out.println("READING TOPICS FILE");
+				/*System.out.println("READING TOPICS FILE");
 				ArrayList<Topic> topics = topicService.readTopics("IMOLA RET");
 				Topic t = new Topic();
 				t.setName("IMOLA topic");
@@ -97,9 +104,9 @@ public class Wp17Application{
 				topicService.writeTopics(topics);
 				topics = topicService.readTopics("IMOLA RET");
 				//System.out.println("SFS FROM FILE");
-				System.out.println(topics);
+				System.out.println(topics);*/
 				
-				System.out.println("READING COMPLAINTS FILE");
+				/*System.out.println("READING COMPLAINTS FILE");
 				ArrayList<Complaint> topics = complaintService.readComplaints();
 				Complaint t = new Complaint();
 				t.setName("IMOLA topic");
@@ -112,10 +119,10 @@ public class Wp17Application{
 				topicService.writeTopics(topics);
 				topics = topicService.readTopics("IMOLA RET");
 				//System.out.println("SFS FROM FILE");
-				System.out.println(topics);
-			}
-		};
-	}*/
+				System.out.println(topics);*/
+			//}
+		//};
+	//}
 
 
 }

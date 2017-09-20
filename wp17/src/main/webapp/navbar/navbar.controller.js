@@ -60,10 +60,6 @@
             function(response){
                 $state.go('home');
             }*/);
-
-        /*$scope.start = function(){
-            $state.go('process');
-        }*/
         
         
 

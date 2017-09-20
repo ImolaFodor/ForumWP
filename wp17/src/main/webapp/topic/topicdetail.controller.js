@@ -87,9 +87,10 @@
                 	$scope.showContent=false;
                 	$scope.showLinkContent=false;
                 		$scope.showImageContent=true;
-                	var str1 = "file:///";
+                	var str1 = "file://";
 					var str2 = $scope.topicdetail.content;
 					$scope.img_source = str1.concat(str2);
+					alert($scope.img_source);
                 	}
                 	if($scope.topicdetail.type=="LINK")
                 	{
